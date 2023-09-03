@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce91b17c92145649aa4ffff367f9ade, type: 3}
+  m_Name: BundleBuildConfig
+  m_EditorClassIdentifier: 
+  ManifestVersion: 12
+  TargetPlatforms: 0d000000
+  Options: 9
+  GlobalCompress: 2
+  GlobalEncrypt: 3
+  OutputRootDirectory: ./Library/AssetBundlesOutput
+  IsCopyToReadOnlyDirectory: 1
+  CopyGroup: 
+  Directories:
+  - directoryName: Assets/BundleRes/Audios
+    DirectoryObj: {fileID: 102900000, guid: cfc236a7222d0e947aee2ae60ac9ed4a, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Audio
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/BundleRes/Entitys
+    DirectoryObj: {fileID: 102900000, guid: 44fda33a85edb4e4fb802d1d3cf88187, type: 3}
+    BuildRuleName: TopDirectoryBasedNAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Entity
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/BundleRes/Environment
+    DirectoryObj: {fileID: 102900000, guid: ea4371db0cabc3a44a4b4129cd1323f5, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Environment
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/BundleRes/ExcelData
+    DirectoryObj: {fileID: 102900000, guid: ceaf5396179540a4796e472abef983b8, type: 3}
+    BuildRuleName: NAssetToNRawBundle
+    Filter: 
+    Regex: 
+    Group: Bin
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/BundleRes/UI
+    DirectoryObj: {fileID: 102900000, guid: 635311a097c96ac4790e3cf767a9a27c, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: UI
+    CompressOption: 0
+    EncryptOption: 0
+  Bundles:
+  - DirectoryName: BundleRes
+    BundleName: Audios.bundle
+    BundleIdentifyName: BundleRes/Audios.bundle
+    Group: Audio
+    IsRaw: 0
+    AssetsLength: 13762509
+    CompressOption: 2
+    EncryptOption: 3
+    Assets:
+    - Name: Assets/BundleRes/Audios/bgm_fate.mp3
+      Length: 5395936
+    - Name: Assets/BundleRes/Audios/bgm_mushroomFarm.mp3
+      Length: 4665476
+    - Name: Assets/BundleRes/Audios/bgm_puppet.mp3
+      Length: 3701097
+  - DirectoryName: BundleRes/ExcelData
+    BundleName: Actor2.bytes
+    BundleIdentifyName: BundleRes/ExcelData/Actor2.bytes
+    Group: Bin
+    IsRaw: 1
+    AssetsLength: 41
+    CompressOption: 2
+    EncryptOption: 3
+    Assets:
+    - Name: Assets/BundleRes/ExcelData/Actor2.bytes
+      Length: 41
+  - DirectoryName: BundleRes/ExcelData
+    BundleName: ActorProperty.bytes
+    BundleIdentifyName: BundleRes/ExcelData/ActorProperty.bytes
+    Group: Bin
+    IsRaw: 1
+    AssetsLength: 58
+    CompressOption: 2
+    EncryptOption: 3
+    Assets:
+    - Name: Assets/BundleRes/ExcelData/ActorProperty.bytes
+      Length: 58
+  - DirectoryName: BundleRes/ExcelData
+    BundleName: MultiLanguage.bytes
+    BundleIdentifyName: BundleRes/ExcelData/MultiLanguage.bytes
+    Group: Bin
+    IsRaw: 1
+    AssetsLength: 137
+    CompressOption: 2
+    EncryptOption: 3
+    Assets:
+    - Name: Assets/BundleRes/ExcelData/MultiLanguage.bytes
+      Length: 137
+  - DirectoryName: BundleRes
+    BundleName: UI.bundle
+    BundleIdentifyName: BundleRes/UI.bundle
+    Group: UI
+    IsRaw: 0
+    AssetsLength: 17192
+    CompressOption: 2
+    EncryptOption: 3
+    Assets:
+    - Name: Assets/BundleRes/UI/Animations/CloseUIForm.anim
+      Length: 7865
+    - Name: Assets/BundleRes/UI/Animations/OpenUIForm.anim
+      Length: 9327
+  BundleCount: 5
+  AssetCount: 8
+  IsExactTextureSize: 0

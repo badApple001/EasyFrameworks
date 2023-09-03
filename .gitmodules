@@ -1,0 +1,3 @@
+[submodule "Assets/CommonModule"]
+	path = Assets/CommonModule
+	url = https://github.com/badApple001/CommonModule.git
