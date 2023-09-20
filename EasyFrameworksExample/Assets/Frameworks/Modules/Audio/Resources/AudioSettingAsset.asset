@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386cb2ee10f001847abb4acf36e2fab5, type: 3}
+  m_Name: AudioSettingAsset
+  m_EditorClassIdentifier: 
+  settings:
+  - file: Assets/BundleRes/Audio/SFX/Pickups/Pickup_Weapon_Medium.wav
+    name: Audio/SFX/Pickups/Pickup_Weapon_Medium.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Damage_Tick2.mp3
+    name: Audio/SFX/Player/Damage_Tick2.mp3
+  - file: Assets/BundleRes/Audio/Music/Wind Ambience.mp3
+    name: Audio/Music/Wind Ambience.mp3
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Turret_Alert.mp3
+    name: Audio/SFX/Enemies/Turret_Alert.mp3
+  - file: Assets/BundleRes/Audio/SFX/Player/Damage_Tick.mp3
+    name: Audio/SFX/Player/Damage_Tick.mp3
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Hoverbot_Alert.wav
+    name: Audio/SFX/Enemies/Hoverbot_Alert.wav
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Hoverbot_Attack.wav
+    name: Audio/SFX/Enemies/Hoverbot_Attack.wav
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Hoverbot_Death.wav
+    name: Audio/SFX/Enemies/Hoverbot_Death.wav
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Hoverbot_Movement.wav
+    name: Audio/SFX/Enemies/Hoverbot_Movement.wav
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Turret_Attack.wav
+    name: Audio/SFX/Enemies/Turret_Attack.wav
+  - file: Assets/BundleRes/Audio/SFX/Enemies/Turret_Death.wav
+    name: Audio/SFX/Enemies/Turret_Death.wav
+  - file: Assets/BundleRes/Audio/SFX/Pickups/Pickup_Health.wav
+    name: Audio/SFX/Pickups/Pickup_Health.wav
+  - file: Assets/BundleRes/Audio/SFX/Pickups/Pickup_Jetpack.wav
+    name: Audio/SFX/Pickups/Pickup_Jetpack.wav
+  - file: Assets/BundleRes/Audio/SFX/Pickups/Pickup_Weapon_Small.wav
+    name: Audio/SFX/Pickups/Pickup_Weapon_Small.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Footstep.wav
+    name: Audio/SFX/Player/Footstep.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Jetpack_Use.wav
+    name: Audio/SFX/Player/Jetpack_Use.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Jump.wav
+    name: Audio/SFX/Player/Jump.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Land.wav
+    name: Audio/SFX/Player/Land.wav
+  - file: Assets/BundleRes/Audio/SFX/Player/Land_Damage.wav
+    name: Audio/SFX/Player/Land_Damage.wav
+  - file: Assets/BundleRes/Audio/SFX/UI/Notification_Chime.wav
+    name: Audio/SFX/UI/Notification_Chime.wav
+  - file: Assets/BundleRes/Audio/SFX/UI/Notification_End.wav
+    name: Audio/SFX/UI/Notification_End.wav
+  - file: Assets/BundleRes/Audio/SFX/UI/Notification_Snap.wav
+    name: Audio/SFX/UI/Notification_Snap.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Blaster_Shot.wav
+    name: Audio/SFX/Weapons/Blaster_Shot.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Launcher_Charge_BuildUp.wav
+    name: Audio/SFX/Weapons/Launcher_Charge_BuildUp.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Launcher_Charge_Loop.wav
+    name: Audio/SFX/Weapons/Launcher_Charge_Loop.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Launcher_Explosion.wav
+    name: Audio/SFX/Weapons/Launcher_Explosion.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Launcher_Release.wav
+    name: Audio/SFX/Weapons/Launcher_Release.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Shotgun_Shot.wav
+    name: Audio/SFX/Weapons/Shotgun_Shot.wav
+  - file: Assets/BundleRes/Audio/SFX/Weapons/Weapon_Cooling.wav
+    name: Audio/SFX/Weapons/Weapon_Cooling.wav
+  createdTime: "2023\u5E749\u670816\u65E5 14:25:53"
+  updatedTime: "2023\u5E749\u670820\u65E5 22:12:59"
