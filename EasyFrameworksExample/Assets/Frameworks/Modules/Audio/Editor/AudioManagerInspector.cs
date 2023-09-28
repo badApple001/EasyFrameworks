@@ -18,12 +18,10 @@ using Object = UnityEngine.Object;
 public class AudioManagerInspector : Editor
 {
     private Vector2 settingScrollerPosition = Vector2.zero;
-    private static string AudioSettingAssetPath;
     private AudioSettingAsset _asset;
     private string lastUpdateTime = string.Empty;
     private void OnEnable( )
     {
-        AudioSettingAssetPath = $"Assets/Frameworks/Modules/Audio/Resources/{AudioManager.AudioSettingPath}.asset";
         _asset = LoadAsset( );
         lastUpdateTime = _asset.updatedTime;
     }
@@ -255,32 +253,42 @@ public class AudioManagerInspector : Editor
             AssetDatabase.Refresh( );
             Log.PINK( $"===============Done===============" );
         }
-        else
-        {
-            Log.Error( $"Load fail: {AudioSettingAssetPath}" );
-        }
     }
 
     public static AudioSettingAsset LoadAsset( )
     {
-        AudioSettingAsset _asset;
-        if ( !File.Exists( AudioSettingAssetPath ) )
-        {
-            if ( !Directory.Exists( Path.GetDirectoryName( AudioSettingAssetPath ) ) )
-            {
-                Directory.CreateDirectory( Path.GetDirectoryName( AudioSettingAssetPath ) );
-            }
 
-            _asset = ScriptableObject.CreateInstance<AudioSettingAsset>( );
-            _asset.createdTime = DateTime.Now.ToString( "F" );
-            _asset.updatedTime = _asset.createdTime;
-            AssetDatabase.CreateAsset( _asset, AudioSettingAssetPath );
+        var settings = EditorAssetUtils.FindAsset<AudioSettingAsset>( "t:AudioSettingAsset", "Assets" );
+        if ( settings.Count > 0 )
+        {
+            return settings[0];
         }
         else
         {
-            _asset = AssetDatabase.LoadAssetAtPath<AudioSettingAsset>( AudioSettingAssetPath );
+            var script_parent_path = EditorAssetUtils.FindScriptDirFromName( "AudioManager" );
+            var AudioSettingAssetPath = Path.Combine( script_parent_path, $"Resources/{AudioManager.AudioSettingPath}.asset" );
+
+            AudioSettingAsset _asset;
+            if ( !File.Exists( AudioSettingAssetPath ) )
+            {
+                if ( !Directory.Exists( Path.GetDirectoryName( AudioSettingAssetPath ) ) )
+                {
+                    Directory.CreateDirectory( Path.GetDirectoryName( AudioSettingAssetPath ) );
+                }
+
+                _asset = ScriptableObject.CreateInstance<AudioSettingAsset>( );
+                _asset.createdTime = DateTime.Now.ToString( "F" );
+                _asset.updatedTime = _asset.createdTime;
+                AssetDatabase.CreateAsset( _asset, AudioSettingAssetPath );
+            }
+            else
+            {
+                _asset = AssetDatabase.LoadAssetAtPath<AudioSettingAsset>( AudioSettingAssetPath );
+            }
+
+            return _asset;
         }
-        return _asset;
+
     }
 
     public static void SaveAsset( AudioSettingAsset asset )

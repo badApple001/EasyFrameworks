@@ -38,31 +38,36 @@ public class PoolManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
 
+    private void Start( )
+    {
         //预加载
         if ( InitOnAwake )
         {
-            Init();
+            if ( Framework.Instance.Completed )
+            {
+                Init( );
+            }
+            else
+            {
+                Fire.Once( FrameworkEvent.CheckAssetBunldeCompleted, Init );
+            }
         }
     }
 
     public const string poolSettingAsset = nameof( PoolSettingAsset );
     private bool _initLock = false;
     public bool Completed { private set; get; } = false;
-    public async Task<float> Init()
+    public void Init()
     {
-        if ( _initLock )
+        if ( !_initLock )
         {
-            return 0f;
+            _initLock = true;
+            PoolSettingAsset settingAsset = Resources.Load<PoolSettingAsset>( poolSettingAsset );
+            Load( settingAsset );
         }
-        _initLock = true;
 
-        float time = Time.time;
-        PoolSettingAsset settingAsset = Resources.Load<PoolSettingAsset>( poolSettingAsset );
-        await Load( settingAsset );
-        Resources.UnloadAsset( settingAsset );
-        Completed = true;
-        return Time.time - time;
     }
 
     public async Task<bool> Load( PoolSettingAsset settingAsset )
@@ -86,12 +91,15 @@ public class PoolManager : MonoBehaviour
                 var item = itemDict[ handler.Name ];
                 Load(ac,item.count);
             }
-            
+
+            Resources.UnloadAsset( settingAsset );
+            Completed = true;
             return true;
         }
         else
         {
             Debug.LogError( $"加载音效配置失败 {result.Error}" );
+            Completed = true;
             return false;
         }
     }

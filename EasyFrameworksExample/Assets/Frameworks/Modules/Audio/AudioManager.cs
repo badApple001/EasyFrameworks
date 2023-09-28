@@ -23,11 +23,11 @@ public class AudioManager : MonoBehaviour
         SFX
     }
     private EasyPool<AudioSource> audioSourcePool;
-    private Dictionary<string, AudioClip> audioClipDict = new Dictionary<string, AudioClip>();
-    private List<AudioSource> actives = new List<AudioSource>();
-    private Dictionary<AudioSource, AudioGroup> audioGroup = new Dictionary<AudioSource, AudioGroup>();
-    private Dictionary<AudioSource, string> audioSourceNameDict = new Dictionary<AudioSource, string>();
-    private Dictionary<string, bool> playingDict = new Dictionary<string, bool>();
+    private Dictionary<string, AudioClip> audioClipDict = new Dictionary<string, AudioClip>( );
+    private List<AudioSource> actives = new List<AudioSource>( );
+    private Dictionary<AudioSource, AudioGroup> audioGroup = new Dictionary<AudioSource, AudioGroup>( );
+    private Dictionary<AudioSource, string> audioSourceNameDict = new Dictionary<AudioSource, string>( );
+    private Dictionary<string, bool> playingDict = new Dictionary<string, bool>( );
     private float _soundVolume = 1.0f, _musicVolume = 1.0f;
     private bool _soundMute = false, _musicMute = false;
 
@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// 预加载音效配置
     /// </summary>
-    private void Awake()
+    private void Awake( )
     {
         if ( Instance != null && Instance != this )
         {
@@ -64,11 +64,11 @@ public class AudioManager : MonoBehaviour
             {
                 ac.gameObject.SetActive( false );
             },
-            () =>
+            ( ) =>
             {
                 var obj = new GameObject( nameof( AudioSource ) );
                 obj.transform.SetParent( transform, true );
-                var asource = obj.AddComponent<AudioSource>();
+                var asource = obj.AddComponent<AudioSource>( );
                 asource.loop = false;
                 asource.volume = 0;
                 asource.playOnAwake = false;
@@ -76,13 +76,23 @@ public class AudioManager : MonoBehaviour
                 return asource;
             }
             );
-
-        if ( InitOnAwake )
-        {
-            Init();
-        }
     }
 
+
+    private void Start( )
+    {
+        if ( InitOnAwake )
+        {
+            if ( Framework.Instance.Completed )
+            {
+                Init( );
+            }
+            else
+            {
+                Fire.Once( FrameworkEvent.CheckAssetBunldeCompleted, Init );
+            }
+        }
+    }
 
     #endregion
 
@@ -92,19 +102,14 @@ public class AudioManager : MonoBehaviour
     private bool _initedLock = false;
     public bool Completed { private set; get; } = false;
     public const string AudioSettingPath = nameof( AudioSettingAsset );
-    public async Task<float> Init()
+    public void Init( )
     {
-        if ( _initedLock )
+        if ( !_initedLock )
         {
-            return 0f;
+            _initedLock = true;
+            AudioSettingAsset audioSettingAsset = Resources.Load<AudioSettingAsset>( AudioSettingPath );
+            Load( audioSettingAsset );
         }
-        float time = Time.time;
-        _initedLock = true;
-        AudioSettingAsset audioSettingAsset = Resources.Load<AudioSettingAsset>( AudioSettingPath );
-        await Load( audioSettingAsset );
-        Resources.UnloadAsset( audioSettingAsset );
-        Completed = true;
-        return Time.time - time;
     }
 
     /// <summary>
@@ -114,6 +119,8 @@ public class AudioManager : MonoBehaviour
     public async Task<Dictionary<string, AudioClip>> Load( AudioSettingAsset audioSettingAsset )
     {
         var result = await Load( audioSettingAsset.settings );
+        Resources.UnloadAsset( audioSettingAsset );
+        Completed = true;
         return result;
     }
 
@@ -123,8 +130,8 @@ public class AudioManager : MonoBehaviour
     /// <param name="audioSettingItems"></param>
     public async Task<Dictionary<string, AudioClip>> Load( List<AudioSettingItem> audioSettingItems )
     {
-        List<string> files = new List<string>();
-        Dictionary<string, string> namemap = new Dictionary<string, string>();
+        List<string> files = new List<string>( );
+        Dictionary<string, string> namemap = new Dictionary<string, string>( );
         audioSettingItems.ForEach( item =>
         {
             files.Add( item.file );
@@ -132,14 +139,14 @@ public class AudioManager : MonoBehaviour
         } );
 
         var result = await CatAssetManager.BatchLoadAssetAsync( files );
-        Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>();
+        Dictionary<string, AudioClip> clips = new Dictionary<string, AudioClip>( );
         if ( result.IsSuccess )
         {
             AssetHandler handler;
             for ( int i = 0; i < result.Handlers.Count; i++ )
             {
                 handler = result.Handlers[ i ];
-                var ac = handler.AssetAs<AudioClip>();
+                var ac = handler.AssetAs<AudioClip>( );
                 var name = namemap[ handler.Name ];
                 audioClipDict[ name ] = ac;
                 clips[ name ] = ac;
@@ -305,7 +312,7 @@ public class AudioManager : MonoBehaviour
 
         }
 
-        var audioSource = audioSourcePool.Get();
+        var audioSource = audioSourcePool.Get( );
         actives.Add( audioSource );
 
         audioSource.volume = _soundVolume;
@@ -313,7 +320,7 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = loop;
         audioSource.spatialBlend = spatialBlend;
         audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.Play( );
 
         audioGroup[ audioSource ] = AudioGroup.SFX;
         audioSourceNameDict[ audioSource ] = audioname;
@@ -365,7 +372,7 @@ public class AudioManager : MonoBehaviour
                 {
                     if ( actives[ i ].clip == clip && actives[ i ].isPlaying )
                     {
-                        actives[ i ].Stop();
+                        actives[ i ].Stop( );
                     }
                 }
             }
@@ -382,7 +389,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// 检测音效的运行状态
     /// </summary>
-    private void Update()
+    private void Update( )
     {
         for ( int i = 0; i < actives.Count; i++ )
         {
