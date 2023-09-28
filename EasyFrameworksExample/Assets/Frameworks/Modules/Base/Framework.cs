@@ -19,7 +19,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-[DefaultExecutionOrder( -2000 )]
 public class Framework : MonoBehaviour
 {
 

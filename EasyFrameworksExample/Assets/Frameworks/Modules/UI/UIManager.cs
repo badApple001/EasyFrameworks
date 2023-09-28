@@ -6,6 +6,7 @@
 // - Version:       1.0
 // - Description:   
 //==========================
+using CatAsset.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -218,7 +219,7 @@ public class UIManager
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T Open<T>( ) where T : UIForm
+    public static async Task<T> Open<T>( ) where T : UIForm
     {
 
         //找到已经缓存的且处于自由或者关闭状态下的窗口
@@ -255,8 +256,9 @@ public class UIManager
 
         //从本地加载实例化
         string assetPath = $"Assets/BundleRes/UI/Form/{formClsName}.prefab";
-        GameObject instance = null;// Loader.Instantiate( assetPath, GetCanvas( CanvasGroup.Base ).transform );
-       
+        GameObject instance = await CatAssetManager.InstantiateAsync( assetPath, GetCanvas( CanvasGroup.Base ).transform );
+
+
         //获取或创建Component并记录
         if ( !instance.TryGetComponent<T>( out T Component ) )
         {
