@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 public class InitGameHandler : IHandler
 {
     public delegate bool GetAwaitFunctor();
-    public delegate Task<float> InitiaFunctor();
+    public delegate void InitiaFunctor();
     public void Do()
     {
         LoadingFormManager.Instance.Open( new List<string>()
