@@ -15,7 +15,9 @@ public class OnLineConfigHandler : IHandler
     /// <summary>
     /// Íê³É×´Ì¬
     /// </summary>
-    public bool done( ) { return localSetting != null; }
+    public bool done( ) {
+        return localSetting != null; 
+    }
 
     public OnLineConfigHandler( )
     {
@@ -40,13 +42,13 @@ public class OnLineConfigHandler : IHandler
     }
 
 
-    //public void Merge( List<OnLineConfigItem> items )
-    //{
-    //    foreach ( var item in items )
-    //    {
-    //        settings[ item.configKey ] = item.configValue;
-    //    }
-    //}
+    public void Merge( Dictionary<string, string> items )
+    {
+        foreach ( var item in items )
+        {
+            settings[ item.Key ] = item.Value;
+        }
+    }
 
     public void Undo( )
     {
