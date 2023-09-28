@@ -36,7 +36,7 @@ public class LoadingForm : UIForm
     /// <summary>
     /// 仅调用一次
     /// </summary>
-    private void Start()
+    private void Start( )
     {
 
     }
@@ -44,64 +44,76 @@ public class LoadingForm : UIForm
     /// <summary>
     /// 界面开启动画播放玩后调用
     /// </summary>
-    protected override void OnShow()
+    protected override void OnShow( )
     {
-        base.OnShow();
-        StartCoroutine( VirtualProgressBar() );
+        base.OnShow( );
+        StartCoroutine( VirtualProgressBar( ) );
     }
 
 
-    private IEnumerator VirtualProgressBar()
+    private float f_progress = 0.0f;
+
+    //约束最快Loading时间 1.4s
+    private IEnumerator VirtualProgressBar( )
     {
         yield return 0;
 
+        float signTime = Time.realtimeSinceStartup;
         if ( null != LoadingFormManager.Instance.preloadAssets && LoadingFormManager.Instance.preloadAssets.Count > 0 )
         {
             yield return CatAssetManager.BatchLoadAssetAsync( LoadingFormManager.Instance.preloadAssets );
         }
+        yield return new WaitForSeconds( Mathf.Max( 0.01f, 0.4f + signTime - Time.realtimeSinceStartup ) );
 
-        slider.value = 0.2f;
-
-
+        f_progress = 0.8f;
         var initHandlers = LoadingFormManager.Instance.initHandlers;
-        for ( int i = 0; i < initHandlers.Count; i++ )
+        if ( null != initHandlers )
         {
-            if( null != initHandlers[i] )
+            for ( int i = 0; i < initHandlers.Count; i++ )
             {
-                yield return initHandlers[i]();
-         
+                if ( null != initHandlers[ i ] )
+                {
+                    initHandlers[ i ]( );
+                    yield return 0;
+                }
             }
         }
 
-        slider.value = 0.4f;
-
+        f_progress = 0.85f;
         var awaitHandler = LoadingFormManager.Instance.getAwaitHandlers;
         for ( int i = 0; i < awaitHandler.Count; i++ )
         {
             if ( null != awaitHandler[ i ] )
             {
-                yield return new WaitWhile( ()=> awaitHandler[ i ]() );
+                yield return new WaitWhile( ( ) => !awaitHandler[ i ]( ) );
+                f_progress += i * 1.0f / awaitHandler.Count * 0.05f;
             }
         }
+        yield return new WaitForSeconds( Mathf.Max( 0.01f, 1f + signTime - Time.realtimeSinceStartup ) );
 
-        slider.value = 0.6f;
 
-        LoadingFormManager.Instance.loadingCompletedHandler?.Invoke();
-        yield return new WaitForSeconds( 0.1f );
-        Close();
+        f_progress = 0.90f;
+        LoadingFormManager.Instance.loadingCompletedHandler?.Invoke( );
+        yield return new WaitForSeconds( Mathf.Max( 0.01f, 1.2f + signTime - Time.realtimeSinceStartup ) );
+
+        f_progress = 0.99f;
+        yield return new WaitForSeconds( 0.2f );
+
+        Close( );
     }
 
-    private void Update()
+    private void Update( )
     {
         progress.text = slider.value.ToString( "P" );
+        slider.value = Mathf.Lerp( slider.value, f_progress, Time.deltaTime * 3f );
     }
 
     /// <summary>
     /// 界面关闭动画播放玩后调用
     /// </summary>
-    protected override void OnHide()
+    protected override void OnHide( )
     {
-        base.OnHide();
+        base.OnHide( );
     }
 
 }

@@ -84,6 +84,7 @@ public class LoadingFormManager
         this.preloadAssets = preloadAssets;
         this.loadingCompletedHandler = loadingCompletedHandler;
         this.getAwaitHandlers = getAwaitHandlers;
+        this.initHandlers = initHandlers;
         //打开界面
         var form = UIManager.Open<LoadingForm>( );
         openTime = Time.realtimeSinceStartup;
