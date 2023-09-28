@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[DefaultExecutionOrder( -2000 )]
 public class GameFlow : MonoBehaviour
 {
 
@@ -73,7 +75,7 @@ public class GameFlow : MonoBehaviour
         HandlerManager.Do<OnLineConfigHandler>( );
         //初始化多语言
         HandlerManager.Do<InitLanguageHandler>( );
-        //初始化SDKManager
+        //初始化SDK
         HandlerManager.Do<InitSDKHandler>( );
         //初始化游戏
         HandlerManager.Do<InitGameHandler>( );
