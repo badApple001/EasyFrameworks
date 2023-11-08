@@ -1,0 +1,264 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce91b17c92145649aa4ffff367f9ade, type: 3}
+  m_Name: BundleBuildConfigSO
+  m_EditorClassIdentifier: 
+  ManifestVersion: 10
+  TargetPlatforms: 13000000
+  Options: 9
+  GlobalCompress: 2
+  GlobalEncrypt: 2
+  OutputRootDirectory: ./Library/AssetBundlesOutput
+  IsCopyToReadOnlyDirectory: 1
+  CopyGroup: 
+  Directories:
+  - directoryName: Assets/AssetBundle/Audio
+    DirectoryObj: {fileID: 102900000, guid: cfc236a7222d0e947aee2ae60ac9ed4a, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Audio
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/AssetBundle/Entitys
+    DirectoryObj: {fileID: 102900000, guid: 44fda33a85edb4e4fb802d1d3cf88187, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Entitys
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/AssetBundle/Fonts
+    DirectoryObj: {fileID: 102900000, guid: 69c8d5c62672a944f818126377b3546e, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: Fonts
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/AssetBundle/UI
+    DirectoryObj: {fileID: 102900000, guid: 635311a097c96ac4790e3cf767a9a27c, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: UI
+    CompressOption: 0
+    EncryptOption: 0
+  Bundles:
+  - DirectoryName: AssetBundle
+    BundleName: Audio.bundle
+    BundleIdentifyName: AssetBundle/Audio.bundle
+    Group: Audio
+    IsRaw: 0
+    AssetsLength: 7670431
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Assets/AssetBundle/Audio/Music/Wind Ambience.mp3
+      Length: 658560
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Alert.wav
+      Length: 142892
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Attack.wav
+      Length: 111654
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Death.wav
+      Length: 197072
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Movement.wav
+      Length: 3350316
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Turret_Alert.mp3
+      Length: 22135
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Turret_Attack.wav
+      Length: 87014
+    - Name: Assets/AssetBundle/Audio/SFX/Enemies/Turret_Death.wav
+      Length: 145764
+    - Name: Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Health.wav
+      Length: 143320
+    - Name: Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Jetpack.wav
+      Length: 27628
+    - Name: Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Weapon_Medium.wav
+      Length: 80916
+    - Name: Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Weapon_Small.wav
+      Length: 12188
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Damage_Tick.mp3
+      Length: 1983
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Damage_Tick2.mp3
+      Length: 2505
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Footstep.wav
+      Length: 28716
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Jetpack_Use.wav
+      Length: 133578
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Jump.wav
+      Length: 84976
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Land.wav
+      Length: 37104
+    - Name: Assets/AssetBundle/Audio/SFX/Player/Land_Damage.wav
+      Length: 56888
+    - Name: Assets/AssetBundle/Audio/SFX/UI/Notification_Chime.wav
+      Length: 26504
+    - Name: Assets/AssetBundle/Audio/SFX/UI/Notification_End.wav
+      Length: 110342
+    - Name: Assets/AssetBundle/Audio/SFX/UI/Notification_Snap.wav
+      Length: 103864
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Blaster_Shot.wav
+      Length: 147758
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Charge_BuildUp.wav
+      Length: 280956
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Charge_Loop.wav
+      Length: 26196
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Explosion.wav
+      Length: 135356
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Release.wav
+      Length: 813992
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Shotgun_Shot.wav
+      Length: 172544
+    - Name: Assets/AssetBundle/Audio/SFX/Weapons/Weapon_Cooling.wav
+      Length: 527710
+  - DirectoryName: AssetBundle
+    BundleName: Entitys.bundle
+    BundleIdentifyName: AssetBundle/Entitys.bundle
+    Group: Entitys
+    IsRaw: 0
+    AssetsLength: 5635
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Assets/AssetBundle/Entitys/Cube.prefab
+      Length: 2810
+    - Name: Assets/AssetBundle/Entitys/Sphere.prefab
+      Length: 2825
+  - DirectoryName: AssetBundle
+    BundleName: Fonts.bundle
+    BundleIdentifyName: AssetBundle/Fonts.bundle
+    Group: Fonts
+    IsRaw: 0
+    AssetsLength: 31425254
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Assets/AssetBundle/Fonts/ApacheLicense2.0.txt
+      Length: 11358
+    - Name: Assets/AssetBundle/Fonts/Bangers-Regular SDF.asset
+      Length: 645623
+    - Name: Assets/AssetBundle/Fonts/BioRhymeExpanded-Regular SDF.asset
+      Length: 642776
+    - Name: Assets/AssetBundle/Fonts/consola SDF.asset
+      Length: 8399148
+    - Name: Assets/AssetBundle/Fonts/consola.ttf
+      Length: 459180
+    - Name: Assets/AssetBundle/Fonts/CormorantUnicase-Regular SDF.asset
+      Length: 654350
+    - Name: Assets/AssetBundle/Fonts/DancingScript-Regular SDF.asset
+      Length: 645581
+    - Name: Assets/AssetBundle/Fonts/fnt SDF.asset
+      Length: 8399715
+    - Name: Assets/AssetBundle/Fonts/fnt.ttf
+      Length: 6651864
+    - Name: Assets/AssetBundle/Fonts/IndieFlower SDF.asset
+      Length: 645219
+    - Name: Assets/AssetBundle/Fonts/Merriweather-Regular SDF.asset
+      Length: 650594
+    - Name: Assets/AssetBundle/Fonts/Orbitron-Regular SDF.asset
+      Length: 624084
+    - Name: Assets/AssetBundle/Fonts/PressStart2P-Regular SDF.asset
+      Length: 582576
+    - Name: Assets/AssetBundle/Fonts/Raleway-Regular SDF.asset
+      Length: 646372
+    - Name: Assets/AssetBundle/Fonts/Roboto-Black SDF.asset
+      Length: 578604
+    - Name: Assets/AssetBundle/Fonts/Roboto-Regular SDF.asset
+      Length: 578463
+    - Name: Assets/AssetBundle/Fonts/ZCOOLKuaiLe-Regular SDF.asset
+      Length: 599147
+    - Name: Assets/TextMesh Pro/Shaders/TMP_SDF.shader
+      Length: 10600
+  - DirectoryName: AssetBundle
+    BundleName: UI.bundle
+    BundleIdentifyName: AssetBundle/UI.bundle
+    Group: UI
+    IsRaw: 0
+    AssetsLength: 2949743
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Assets/AssetBundle/UI/Animations/CloseUIForm.anim
+      Length: 7865
+    - Name: Assets/AssetBundle/UI/Animations/HideHomeUI.anim
+      Length: 6376
+    - Name: Assets/AssetBundle/UI/Animations/OpenUIForm.anim
+      Length: 9327
+    - Name: Assets/AssetBundle/UI/Form/HomeForm.prefab
+      Length: 81034
+    - Name: Assets/AssetBundle/UI/Form/LoadingForm.prefab
+      Length: 23773
+    - Name: Assets/AssetBundle/UI/Sprites/Home/AD1_icon.png
+      Length: 7530
+    - Name: Assets/AssetBundle/UI/Sprites/Home/AD2_icon.png
+      Length: 7129
+    - Name: Assets/AssetBundle/UI/Sprites/Home/add_icon.png
+      Length: 2093
+    - Name: Assets/AssetBundle/UI/Sprites/Home/camera_icon.png
+      Length: 19848
+    - Name: Assets/AssetBundle/UI/Sprites/Home/card_icon.png
+      Length: 4557
+    - Name: Assets/AssetBundle/UI/Sprites/Home/coin_icon.png
+      Length: 4720
+    - Name: Assets/AssetBundle/UI/Sprites/Home/countdown1_icon.png
+      Length: 396
+    - Name: Assets/AssetBundle/UI/Sprites/Home/countdown2_icon.png
+      Length: 573
+    - Name: Assets/AssetBundle/UI/Sprites/Home/diamond_icon.png
+      Length: 3319
+    - Name: Assets/AssetBundle/UI/Sprites/Home/discounts_icon.png
+      Length: 4792
+    - Name: Assets/AssetBundle/UI/Sprites/Home/purchase1_btn.png
+      Length: 3703
+    - Name: Assets/AssetBundle/UI/Sprites/Home/purchase2_btn.png
+      Length: 3716
+    - Name: Assets/AssetBundle/UI/Sprites/Home/purchase3_btn.png
+      Length: 3806
+    - Name: Assets/AssetBundle/UI/Sprites/Home/resources_bar.png
+      Length: 1371
+    - Name: Assets/AssetBundle/UI/Sprites/Home/set_icon.png
+      Length: 4108
+    - Name: Assets/AssetBundle/UI/Sprites/Home/slash.png
+      Length: 785
+    - Name: Assets/AssetBundle/UI/Sprites/Home/start.png
+      Length: 16559
+    - Name: Assets/AssetBundle/UI/Sprites/Home/toilet_icon.png
+      Length: 18276
+    - Name: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+      Length: 350200
+    - Name: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF -
+        Fallback.asset
+      Length: 9525
+    - Name: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+      Length: 2256862
+    - Name: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+      Length: 7674
+    - Name: Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component
+        Icon.psd
+      Length: 89826
+  - DirectoryName: 
+    BundleName: Redundancy_0.bundle
+    BundleIdentifyName: Redundancy_0.bundle
+    Group: UI
+    IsRaw: 0
+    AssetsLength: 103962
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset
+        Icon.psd
+      Length: 103962
+  BundleCount: 5
+  AssetCount: 78
+  IsExactTextureSize: 0
+  IsDrawDesc: 1

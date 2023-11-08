@@ -74,7 +74,7 @@ public class CustomAssetPostprocessor : AssetPostprocessor
         List<string> movedAssetsList = new List<string>( movedAssets );
         foreach ( string url in importedAsset )
         {
-            if ( url.StartsWith( "Assets/BundleRes/UI/Form" ) && url.EndsWith( ".prefab" ) && !movedAssetsList.Contains( url ) )
+            if ( url.StartsWith( "Assets/AssetBundle/UI/Form" ) && url.EndsWith( ".prefab" ) && !movedAssetsList.Contains( url ) )
             {
                 //if ( !formList.Contains( str ) )
                 //{
@@ -82,7 +82,7 @@ public class CustomAssetPostprocessor : AssetPostprocessor
                 //}
 #if UNITY_2020_1_OR_NEWER
                 string form = Path.GetFileNameWithoutExtension( url );
-                if ( !Directory.Exists( $"Assets/Scripts/UIForms/{form}" ) )
+                if ( !Directory.Exists( $"Assets/Framework_AutoGenerate/Scripts/UIForms/{form}" ) )
 #endif
                 {
                     NewFormPrefab( url );
@@ -92,12 +92,12 @@ public class CustomAssetPostprocessor : AssetPostprocessor
 
         foreach ( string url in deletedAssets )
         {
-            if ( url.StartsWith( "Assets/BundleRes/UI/Form" ) && url.EndsWith( ".prefab" ) && !movedAssetsList.Contains( url ) )
+            if ( url.StartsWith( "Assets/AssetBundle/UI/Form" ) && url.EndsWith( ".prefab" ) && !movedAssetsList.Contains( url ) )
             {
 
                 Log.PINK( $"Check uIForm prefab deleted: {url}" );
                 var formName = Path.GetFileNameWithoutExtension( url );
-                var dependScriptFolder = $"Assets/Scripts/UIForms/{formName}";
+                var dependScriptFolder = $"Assets/Framework_AutoGenerate/Scripts/UIForms/{formName}";
                 if ( Directory.Exists( dependScriptFolder ) )
                 {
                     Directory.Delete( dependScriptFolder, true );
@@ -186,8 +186,8 @@ public class CustomAssetPostprocessor : AssetPostprocessor
             animation = gameobject.AddComponent<Animation>( );
         }
 
-        var closeClip = AssetDatabase.LoadAssetAtPath<AnimationClip>( "Assets/BundleRes/UI/Animations/CloseUIForm.anim" );
-        var openClip = AssetDatabase.LoadAssetAtPath<AnimationClip>( "Assets/BundleRes/UI/Animations/OpenUIForm.anim" );
+        var closeClip = AssetDatabase.LoadAssetAtPath<AnimationClip>( "Assets/AssetBundle/UI/Animations/CloseUIForm.anim" );
+        var openClip = AssetDatabase.LoadAssetAtPath<AnimationClip>( "Assets/AssetBundle/UI/Animations/OpenUIForm.anim" );
 
         AnimationUtility.SetAnimationClips( animation, new AnimationClip[] {
             openClip,
@@ -263,12 +263,12 @@ public class CustomAssetPostprocessor : AssetPostprocessor
         //预制体操作
         //var instance = PrefabUtility.LoadPrefabContents( assetPath );
         //instance.name = file;
-        //PrefabUtility.SaveAsPrefabAsset( instance, "Assets/BundleRes/UI/Form/aaa2.prefab" );
+        //PrefabUtility.SaveAsPrefabAsset( instance, "Assets/AssetBundle/UI/Form/aaa2.prefab" );
         //PrefabUtility.UnloadPrefabContents( instance );
 
         var formClsName = file + "";
         var managerClsName = $"{file}Manager";
-        var outputFolder = $"Assets/Scripts/UIForms/{file}/";
+        var outputFolder = $"Assets/Framework_AutoGenerate/Scripts/UIForms/{file}/";
         if ( !Directory.Exists( outputFolder ) )
         {
             Directory.CreateDirectory( outputFolder );

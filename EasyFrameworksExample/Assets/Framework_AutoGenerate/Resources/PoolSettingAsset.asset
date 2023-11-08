@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da583f3bd4e118249b7ce639ee9173d3, type: 3}
+  m_Name: PoolSettingAsset
+  m_EditorClassIdentifier: 
+  settings:
+  - file: Assets/AssetBundle/Entitys/Cube.prefab
+    name: Cube
+    count: 0
+  createdTime: "2023\u5E7410\u670817\u65E5 23:35:39"
+  updatedTime: "2023\u5E7411\u67089\u65E5 0:41:21"

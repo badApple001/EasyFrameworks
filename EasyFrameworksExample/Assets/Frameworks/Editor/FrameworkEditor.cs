@@ -6,28 +6,16 @@
 // - Version:       1.0
 // - Description:   
 //==========================
-using CatAsset.Editor;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class FrameworkEditor : Editor, IPreprocessBuildWithReport
 {
     public int callbackOrder => 0;
-
-
-    [MenuItem( "Frameworks/打开目录/资源包构建输出根目录", priority = 1 )]
-    private static void OpenAssetBundleOutputPath( )
-    {
-        OpenDirectory( BundleBuildConfigSO.Instance.OutputRootDirectory );
-    }
-
 
     [MenuItem( "Frameworks/打开目录/streamingAssetsPath", priority = 1 )]
     private static void OpenReadOnlyPath( )
@@ -94,11 +82,16 @@ public class FrameworkEditor : Editor, IPreprocessBuildWithReport
 
         bool createOne = NoExistThenCreateOfDirectory( new string[]
         {
-            "Assets/BundleRes/UI/Form",
-            "Assets/BundleRes/UI/Sprites",
-            "Assets/Scripts/ExcelCSharp",
-            "Assets/BundleRes/ExcelData",
-            "Assets/BundleRes/UI/Animations"
+            "Assets/AssetBundle/Audio",
+            "Assets/AssetBundle/Entitys",
+            "Assets/AssetBundle/ExcelData",
+
+            "Assets/AssetBundle/UI/Form",
+            "Assets/AssetBundle/UI/Sprites",
+            "Assets/AssetBundle/UI/Animations",
+
+            "Assets/Framework_AutoGenerate/Scripts/DataTable",
+            "Assets/Framework_AutoGenerate/Scripts/Resources/DR_Bytes"
         } );
 
         if ( createOne )

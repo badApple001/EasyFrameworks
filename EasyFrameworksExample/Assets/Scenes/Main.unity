@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 239940586, guid: e1e243e51741fd8428a2d323e0b7ede1, type: 3}
       propertyPath: InitOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1997546524, guid: e1e243e51741fd8428a2d323e0b7ede1, type: 3}
       propertyPath: InitOnAwake

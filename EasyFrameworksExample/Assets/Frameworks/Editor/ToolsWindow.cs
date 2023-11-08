@@ -88,7 +88,7 @@ public class ToolsWindow : EditorWindow
             FrameworkEditor.SetRuntimeModeToDebug( );
             this.Close( );
         }
-        if ( GUILayout.Button( "重置目录", btnStyle ) )
+        if ( GUILayout.Button( "创建默认目录", btnStyle ) )
         {
             FrameworkEditor.ResetProjectDefaultDirectory( );
         }
