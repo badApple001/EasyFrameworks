@@ -13,11 +13,13 @@ using UnityEngine;
 public class EasyPool<T> where T : class, new()
 {
 
-    private Queue<T> freeClsQueue = new Queue<T>();//队列
-    private HashSet<T> insideFreeSet = new HashSet<T>();//增加一个HashSet来提升查找性能 因为Queue本质也是一个List 查找太低效了
+    private Queue<T> freeClsQueue = new Queue<T>( );//队列
+    private HashSet<T> insideFreeSet = new HashSet<T>( );//增加一个HashSet来提升查找性能 因为Queue本质也是一个List 查找太低效了
     private Action<T> InitHandler, ReleaseHandler;
     private PoolSpawnFunctorType<T> GenerateHandler;
-    public delegate E PoolSpawnFunctorType<E>();
+    public delegate E PoolSpawnFunctorType<E>( );
+    private float lastExtendTime = 0; //上一次扩容的时间
+    private UInt64 capacity = 1;//容量
 
     /// <summary>
     /// 创建一个简单的动态扩容对象池 
@@ -26,7 +28,7 @@ public class EasyPool<T> where T : class, new()
     /// <param name="onInit"> 对象拿出来初始化时的操作 </param>
     /// <param name="onRelease"> 对象回收时应该干嘛  </param>
     /// <param name="howGenerate"> 怎么生成 默认就是 new一个 你可以自定义这个方法来重写对象的实例方式  </param>
-    public EasyPool( int prefillCount = 0, Action<T> onInit = null, Action<T> onRelease = null, PoolSpawnFunctorType<T> howGenerate = null )
+    public EasyPool( UInt32 prefillCount = 0, Action<T> onInit = null, Action<T> onRelease = null, PoolSpawnFunctorType<T> howGenerate = null )
     {
         //注册回收和初始化
         InitHandler = onInit;
@@ -48,7 +50,7 @@ public class EasyPool<T> where T : class, new()
         {
             ReleaseHandler?.Invoke( clsInstance );
             freeClsQueue.Enqueue( clsInstance );
-            insideFreeSet.Contains( clsInstance );
+            insideFreeSet.Add( clsInstance );
         }
     }
 
@@ -56,11 +58,11 @@ public class EasyPool<T> where T : class, new()
     /// 获取一个自由对象 当内存不足时 自动扩容
     /// </summary>
     /// <returns></returns>
-    public T Get()
+    public T Get( )
     {
         if ( freeClsQueue.Count > 0 )
         {
-            var cls = freeClsQueue.Dequeue();
+            var cls = freeClsQueue.Dequeue( );
             if ( insideFreeSet.Contains( cls ) )
             {
                 insideFreeSet.Remove( cls );
@@ -68,8 +70,8 @@ public class EasyPool<T> where T : class, new()
             InitHandler?.Invoke( cls );
             return cls;
         }
-        AutoExtend();
-        return Get();
+        AutoExtend( );
+        return Get( );
     }
 
     /// <summary>
@@ -77,27 +79,48 @@ public class EasyPool<T> where T : class, new()
     /// 如果你觉得可能会出现溢出现象 可以提前预扩容 避免动态扩容可能存在的卡顿问题
     /// </summary>
     /// <param name="extendCount"></param>
-    public void Extend( int extendCount )
+    public void Extend( UInt32 extendCount )
     {
-        for ( int i = 0; i < extendCount; i++ )
+        capacity += extendCount;
+        for ( UInt32 i = 0; i < extendCount; i++ )
         {
-            Free( GenerateHandler != null ? GenerateHandler() : new T() );
+            Free( GenerateHandler != null ? GenerateHandler( ) : new T( ) );
         }
     }
 
-    public int extendCount = 2; //每次动态扩容的基础数量
-    private int extendTimes = 0; //动态扩容的次数 
-    private float lastExtendTime = 0; //上一次扩容的时间
-    private float thresholdTime = 0.1f;//小于阈值时间扩容 会触发动态扩容递增
-    //实际动态扩容数量 =  extendTimes * extendCount
-    private void AutoExtend()
+    private void AutoExtend( )
     {
-        ++extendTimes;
-        if ( Time.realtimeSinceStartup - lastExtendTime > thresholdTime )
+        if ( Time.time - lastExtendTime > 1e-2f )
         {
-            extendTimes = 1;
+            Extend( ( UInt32 ) capacity );
         }
-        lastExtendTime = Time.realtimeSinceStartup;
-        Extend( extendTimes * extendCount );
+        lastExtendTime = Time.time;
+    }
+
+    /// <summary>
+    /// 清理对象池
+    /// </summary>
+    /// <param name="foreach_release"> 是否对空闲对象进行回收 </param>
+    /// <param name="custom_release_handle"> 回收处理的方法 - 自定义    默认使用 ReleaseHandler </param>
+    public void Clear( bool foreach_release = false, Action<T> custom_release_handle = null )
+    {
+        if ( foreach_release )
+        {
+            if ( custom_release_handle == null )
+            {
+                custom_release_handle = ReleaseHandler;
+            }
+
+            if ( custom_release_handle != null )
+            {
+                foreach ( var obj in freeClsQueue )
+                {
+                    custom_release_handle( obj );
+                }
+            }
+        }
+
+        freeClsQueue.Clear( );
+        insideFreeSet.Clear( );
     }
 }
