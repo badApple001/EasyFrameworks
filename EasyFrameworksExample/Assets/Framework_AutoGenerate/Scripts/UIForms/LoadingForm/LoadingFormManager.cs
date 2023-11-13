@@ -31,7 +31,7 @@ public class LoadingFormManager
     public class DiskData
     {
         //例如:
-        public long firstOpenTimestamp; //首次打开这个界面的时间
+        public long firstOpenUTCTimestamp; //首次打开这个界面的时间
         public float lastStayTime; //上一次再这个界面停留的时间
 
 
@@ -76,9 +76,9 @@ public class LoadingFormManager
     {
 
         //首次打开
-        if ( data.firstOpenTimestamp == 0 )
+        if ( data.firstOpenUTCTimestamp == 0 )
         {
-            data.firstOpenTimestamp = DateTimeUtils.Convert2UTCTimestamp( System.DateTime.Now );
+            data.firstOpenUTCTimestamp = DateTimeUtils.Convert2UTCTimestamp( System.DateTime.Now );
         }
 
         this.preloadAssets = preloadAssets;
@@ -97,7 +97,7 @@ public class LoadingFormManager
     public void Close( bool clearAllTimer = false )
     {
         //从未打开过
-        if ( data.firstOpenTimestamp == 0 ) return;
+        if ( data.firstOpenUTCTimestamp == 0 ) return;
 
         //计算这个界面的停留时间
         data.lastStayTime = Time.realtimeSinceStartup - openTime;

@@ -30,7 +30,7 @@ public class HomeFormManager
     public class DiskData
     {
         //例如:
-        public long firstOpenTimestamp; //首次打开这个界面的时间
+        public long firstOpenUTCTimestamp; //首次打开这个界面的时间
         public float lastStayTime; //上一次再这个界面停留的时间
 
         //你可以在这里自定义你当前界面的数据格式
@@ -64,9 +64,9 @@ public class HomeFormManager
     {
 
         //首次打开
-        if ( data.firstOpenTimestamp == 0 )
+        if ( data.firstOpenUTCTimestamp == 0 )
         {
-            data.firstOpenTimestamp = DateTimeUtils.Convert2UTCTimestamp( System.DateTime.Now );
+            data.firstOpenUTCTimestamp = DateTimeUtils.Convert2UTCTimestamp( System.DateTime.Now );
         }
 
         //打开界面
@@ -81,7 +81,7 @@ public class HomeFormManager
     public void Close( bool clearAllTimer = false )
     {
         //从未打开过
-        if ( data.firstOpenTimestamp == 0 ) return;
+        if ( data.firstOpenUTCTimestamp == 0 ) return;
 
         //计算这个界面的停留时间
         data.lastStayTime = Time.realtimeSinceStartup - openTime;
