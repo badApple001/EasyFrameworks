@@ -22,4 +22,16 @@ public class PlatformUtils
         }
     }
 
+
+    /// <summary>
+    /// 是否为Pad平台
+    /// </summary>
+    public static bool isPadPlatform
+    {
+        get
+        {
+            return Screen.width * 1.0f / Screen.height >= 0.695f;
+        }
+    }
+
 }
