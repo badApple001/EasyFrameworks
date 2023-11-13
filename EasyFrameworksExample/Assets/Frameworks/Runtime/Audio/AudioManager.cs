@@ -358,6 +358,24 @@ public class AudioManager : MonoBehaviour
     }
 
 
+    public float GetAudioProgress( string audioname )
+    {
+        if ( playingDict.TryGetValue( audioname, out var playing ) && playing )
+        {
+            if ( audioClipDict.TryGetValue( audioname, out AudioClip clip ) )
+            {
+                for ( int i = 0; i < actives.Count; i++ )
+                {
+                    if ( actives[ i ].clip == clip && actives[ i ].isPlaying )
+                    {
+                        return actives[ i ].timeSamples * 1.0f / actives[ i ].clip.samples;
+                    }
+                }
+            }
+        }
+        return 0f;
+    }
+
     /// <summary>
     /// 停止播放
     /// </summary>

@@ -31,7 +31,7 @@ public class InitGameHandler : IHandler
         //GMapManager.LoadMap( );
         HomeFormManager.Instance.Open();
 
-        //AudioManager.Instance.PlayMusic( AudioPath.Audio_Music_Wind_Ambience );
+        AudioManager.Instance.PlayMusic( AudioPath.Audio_Music_Wind_Ambience );
     }
 
     public void Undo()

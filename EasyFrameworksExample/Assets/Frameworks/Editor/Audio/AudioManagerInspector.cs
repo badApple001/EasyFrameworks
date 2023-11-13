@@ -33,12 +33,12 @@ public class AudioManagerInspector : Editor
     public override void OnInspectorGUI( )
     {
         base.OnInspectorGUI( );
+
         if ( Application.isPlaying )
         {
             EditorGUILayout.LabelField( "Runtime model - Ω˚÷π–ﬁ∏ƒ≈‰÷√" );
             return;
         }
-
         if ( null != _asset )
         {
 
@@ -60,7 +60,22 @@ public class AudioManagerInspector : Editor
                     _asset.settings.RemoveAt( i );
                     break;
                 }
-                /*_asset.settings[ i ].name =*/ EditorGUILayout.LabelField( _asset.settings[ i ].name );
+
+                //if ( Application.isPlaying )
+                //{
+                //    if ( null != AudioManager.Instance )
+                //    {
+                //        //EditorGUILayout.Slider( AudioManager.Instance.GetAudioProgress( _asset.settings[ i ].name ), 0, 1 );
+                //        EditorGUILayout.LabelField( AudioManager.Instance.GetAudioProgress( _asset.settings[ i ].name ).ToString("P") );
+                //        //EditorGUILayout.Knob( new Vector2( 100, 31.4f ), AudioManager.Instance.GetAudioProgress( _asset.settings[ i ].name ) * 100, 0, 100, "%", Color.black, Color.blue, true );
+                //    }
+                //}
+                //else
+                //{
+                /*_asset.settings[ i ].name =*/
+                EditorGUILayout.LabelField( _asset.settings[ i ].name );
+                //}
+
                 Object o = string.IsNullOrEmpty( _asset.settings[ i ].file ) ? null : AssetDatabase.LoadAssetAtPath<AudioClip>( _asset.settings[ i ].file );
                 AudioClip ac = ( AudioClip ) EditorGUILayout.ObjectField( o, typeof( AudioClip ), true, GUILayout.MaxWidth( 200 ) );
                 if ( ac != null && GUI.changed )

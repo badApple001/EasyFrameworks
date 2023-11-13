@@ -67,7 +67,6 @@ public class I18nText : MonoBehaviour
     /// <summary>
     /// 更新多语言
     /// </summary>
-    /// <param name="customContent"></param>
     public void UpdateText()
     {
         if ( mulID != 0 )

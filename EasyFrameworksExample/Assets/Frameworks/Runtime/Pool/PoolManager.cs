@@ -14,10 +14,8 @@
  * 原文链接：https://blog.csdn.net/qq_39162566/article/details/128290119
  * 
  */
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PoolCore;
 using System.Threading.Tasks;
 using CatAsset.Runtime;
 
@@ -25,12 +23,11 @@ public class PoolManager : MonoBehaviour
 {
 
     [SerializeField, Tooltip( "是否在Awake的时候进行预加载" )] private bool InitOnAwake = true;
-    private Dictionary<string, TransformPool> poolDict = new Dictionary<string, TransformPool>();
-    private static Dictionary<Transform, string> nameofDict = new Dictionary<Transform, string>();
-
+    private Dictionary<string, TransformPool> poolDict = new Dictionary<string, TransformPool>( );
+    private Dictionary<Transform, TransformPool> objectMapping = new Dictionary<Transform, TransformPool>( );
     public static PoolManager Instance { private set; get; } = null;
 
-    private void Awake()
+    private void Awake( )
     {
         if ( Instance != null && Instance != this )
         {
@@ -59,7 +56,7 @@ public class PoolManager : MonoBehaviour
     public const string poolSettingAsset = nameof( PoolSettingAsset );
     private bool _initLock = false;
     public bool Completed { private set; get; } = false;
-    public void Init()
+    public void Init( )
     {
         if ( !_initLock )
         {
@@ -72,8 +69,8 @@ public class PoolManager : MonoBehaviour
 
     public async Task<bool> Load( PoolSettingAsset settingAsset )
     {
-        List<string> files = new List<string>();
-        Dictionary<string, PoolSettingItem> itemDict = new Dictionary<string, PoolSettingItem>();
+        List<string> files = new List<string>( );
+        Dictionary<string, PoolSettingItem> itemDict = new Dictionary<string, PoolSettingItem>( );
         settingAsset.settings.ForEach( item =>
         {
             files.Add( item.file );
@@ -87,9 +84,9 @@ public class PoolManager : MonoBehaviour
             for ( int i = 0; i < result.Handlers.Count; i++ )
             {
                 handler = result.Handlers[ i ];
-                var ac = handler.AssetAs<GameObject>();
+                var ac = handler.AssetAs<GameObject>( );
                 var item = itemDict[ handler.Name ];
-                Load(ac,item.count);
+                Load( ac, item.count );
             }
 
             Resources.UnloadAsset( settingAsset );
@@ -111,11 +108,9 @@ public class PoolManager : MonoBehaviour
     /// <returns>当返回null时 说明不存在这个预设的池子 你可以使用 GeneratePool 来添加一个新的池子 </returns>
     public Transform Spawn( string key )
     {
-
-        TransformPool res = null;
-        if ( poolDict.TryGetValue( key, out res ) )
+        if ( poolDict.TryGetValue( key, out TransformPool pool ) )
         {
-            Transform trans = res.Pop( );
+            Transform trans = pool.Pop( );
             trans.gameObject.SetActive( true );
             return trans;
         }
@@ -143,9 +138,9 @@ public class PoolManager : MonoBehaviour
 #endif
         }
 
-        if ( nameofDict.TryGetValue( obj, out string name ) && poolDict.TryGetValue( name, out TransformPool res ) )
+        if ( objectMapping.TryGetValue( obj, out TransformPool pool ) )
         {
-            res.Push_Back( obj );
+            pool.Push_Back( obj );
             return true;
         }
         else
@@ -170,7 +165,7 @@ public class PoolManager : MonoBehaviour
     {
         if ( poolDict.TryGetValue( pool, out TransformPool res ) )
         {
-            res.Recycle();
+            res.Recycle( );
         }
 #if UNITY_EDITOR || ENABLE_LOG
         else
@@ -187,7 +182,7 @@ public class PoolManager : MonoBehaviour
     /// <param name="delay"></param>
     public void Despawn( Transform obj, float delay )
     {
-        Timer.SetTimeout( delay, () => Despawn( obj ) );
+        Timer.SetTimeout( delay, ( ) => Despawn( obj ) );
     }
 
     /// <summary>
@@ -197,8 +192,7 @@ public class PoolManager : MonoBehaviour
     /// <returns></returns>
     public bool Contains( Transform element )
     {
-        TransformPool pool;
-        if ( null != element && nameofDict.TryGetValue( element, out string name ) && poolDict.TryGetValue( name, out pool ) && pool.InSidePool( element ) )
+        if ( null != element && objectMapping.TryGetValue( element, out TransformPool pool ) && pool.InSidePool( element ) )
         {
             return true;
         }
@@ -211,7 +205,7 @@ public class PoolManager : MonoBehaviour
     /// <param name="root"></param>
     public void DespawnSelfAny<T>( Transform root ) where T : Component
     {
-        T[] suspectObjects = root.GetComponentsInChildren<T>();
+        T[] suspectObjects = root.GetComponentsInChildren<T>( );
         foreach ( var obj in suspectObjects )
         {
             if ( Contains( obj.transform ) )
@@ -234,14 +228,14 @@ public class PoolManager : MonoBehaviour
 
         if ( force )
         {
-            Transform[] suspectObjects = root.GetComponentsInChildren<Transform>();
+            Transform[] suspectObjects = root.GetComponentsInChildren<Transform>( );
             children = new List<Transform>( suspectObjects );
             if ( !includeSelf ) children.Remove( root );
 
         }
         else
         {
-            children = new List<Transform>();
+            children = new List<Transform>( );
             if ( includeSelf )
             {
                 children.Add( root );
@@ -263,7 +257,7 @@ public class PoolManager : MonoBehaviour
     /// </summary>
     /// <param name="prefab"></param>
     /// <param name="firstExpandCount"></param>
-    public void Load( GameObject prefab, int firstExpandCount = 100 )
+    public void Load( GameObject prefab, int firstExpandCount = 1 )
     {
         if ( prefab != null )
         {
@@ -273,7 +267,7 @@ public class PoolManager : MonoBehaviour
                 Debug.LogError( $"Add Pool Error: pool name <{key}> already exist!", prefab );
                 return;
             }
-            var pool = new TransformPool( prefab, transform, nameofDict );
+            var pool = new TransformPool( prefab, objectMapping, transform );
             poolDict.Add( key, pool );
             pool.Reserve( firstExpandCount );
 #if UNITY_EDITOR || ENABLE_LOG
@@ -290,11 +284,11 @@ public class PoolManager : MonoBehaviour
     /// <summary>
     /// 回收所有激活对象
     /// </summary>
-    public void Recycle()
+    public void Recycle( )
     {
         foreach ( var pool in poolDict )
         {
-            pool.Value.Recycle();
+            pool.Value.Recycle( );
         }
     }
 
