@@ -29,9 +29,8 @@ public class InitGameHandler : IHandler
     private void OnInitCompleted()
     {
         //GMapManager.LoadMap( );
-        HomeFormManager.Instance.Open();
-
-        AudioManager.Instance.PlayMusic( AudioPath.Audio_Music_Wind_Ambience );
+        HomeFormManager.Instance.Open( );
+        //AudioManager.Instance.PlayMusic( AudioPath.Audio_Music_Wind_Ambience );
     }
 
     public void Undo()

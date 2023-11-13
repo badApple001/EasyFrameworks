@@ -66,7 +66,7 @@ public class HomeFormManager
         //首次打开
         if ( data.firstOpenTimestamp == 0 )
         {
-            data.firstOpenTimestamp = DateTimeUtils.ConvertDateTimep( System.DateTime.Now );
+            data.firstOpenTimestamp = DateTimeUtils.Convert2UTCTimestamp( System.DateTime.Now );
         }
 
         //打开界面

@@ -15,6 +15,6 @@ MonoBehaviour:
   settings:
   - file: Assets/AssetBundle/Entitys/Cube.prefab
     name: Cube
-    count: 0
+    count: 1
   createdTime: "2023\u5E7410\u670817\u65E5 23:35:39"
-  updatedTime: "2023\u5E7411\u67089\u65E5 0:41:21"
+  updatedTime: "2023\u5E7411\u670814\u65E5 2:29:19"

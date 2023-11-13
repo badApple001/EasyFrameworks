@@ -15,6 +15,7 @@ public class FrameworksInspector : Editor
     SerializedProperty UnloadBundleDelayTime;
     SerializedProperty UnloadAssetDelayTime;
     SerializedProperty MaxTaskRunCount;
+    SerializedProperty CanvasPrefab;
     private void OnEnable( )
     {
         framework = ( Framework ) target;
@@ -23,6 +24,7 @@ public class FrameworksInspector : Editor
         UnloadBundleDelayTime = serializedObject.FindProperty( "UnloadBundleDelayTime" );
         UnloadAssetDelayTime = serializedObject.FindProperty( "UnloadAssetDelayTime" );
         MaxTaskRunCount = serializedObject.FindProperty( "MaxTaskRunCount" );
+        CanvasPrefab = serializedObject.FindProperty( "CanvasPrefab" );
     }
 
     public override void OnInspectorGUI( )
@@ -36,6 +38,7 @@ public class FrameworksInspector : Editor
         EditorGUILayout.PropertyField( UnloadBundleDelayTime );
         EditorGUILayout.PropertyField( UnloadAssetDelayTime );
         EditorGUILayout.PropertyField( MaxTaskRunCount );
+        EditorGUILayout.PropertyField( CanvasPrefab );
         serializedObject.ApplyModifiedProperties( );
     }
 }

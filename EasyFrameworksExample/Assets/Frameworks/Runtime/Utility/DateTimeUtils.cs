@@ -1,5 +1,5 @@
-//==========================
-// - FileName:      Assets/Frameworks/Modules/Utility/DateTimeUtils.cs
+ï»¿//==========================
+// - FileName:      Assets/Frameworks/Scripts/Utility/DateTimeUtils.cs
 // - Created:       ChenJC	
 // - CreateTime:    2023-06-21-17:36:50
 // - UnityVersion:  2021.3.22f1
@@ -7,33 +7,69 @@
 // - Description:   
 //==========================
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Globalization;
 
-public class DateTimeUtils 
+public class DateTimeUtils
 {
-    /// <summary>
-    /// »ñÈ¡Ê±¼ä´Á£¨¾«È·µ½Ãë£©
-    /// TimeTool.ConvertDateTimep(DateTime.Now)
-    /// </summary>
-    /// <param name="time">Ê±¼ä</param>
-    public static long ConvertDateTimep( DateTime time )
-    {
-        return ( ( time.ToUniversalTime( ).Ticks - 621355968000000000 ) / 10000000 );
-        //µÈ¼ÛÓÚ£º
-        //return ((time.ToUniversalTime().Ticks - new DateTime(1970, 1, 1, 0, 0, 0, 0).Ticks) / 10000000) * 1000;
-    }
 
     /// <summary>
-    /// Ê±¼ä´Á×ªÎªC#¸ñÊ½Ê±¼ä
-    /// TimeTool.GetTime(TimeTool.ConvertDateTiemp(DateTime.Now).ToString())
+    /// æ—¶é—´è½¬æ—¶é—´æˆ³
     /// </summary>
-    /// <param name="timeStamp">Ê±¼ä´Á</param>
+    /// <param name="local_dateTime"></param>
     /// <returns></returns>
-    public static DateTime GetTime( long timeStamp )
+    public static long Convert2UTCTimestamp( DateTime local_dateTime )
     {
-        return new DateTime( 1970, 1, 1, 0, 0, 0 ).AddSeconds( timeStamp );
+        return ( local_dateTime.ToUniversalTime( ).Ticks - 621355968000000000 ) / TimeSpan.TicksPerSecond;
     }
 
+    /// <summary>
+    /// æ—¶é—´æˆ³è½¬æ—¶é—´
+    /// </summary>
+    /// <param name="timestamps"></param>
+    /// <returns></returns>
+    public static DateTime Convert2DateTime( long timestamps )
+    {
+        return new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc ).AddSeconds( timestamps );
+    }
+
+    /// <summary>
+    /// è½¬åŒ—äº¬æ—¶é—´æˆ³
+    /// </summary>
+    /// <param name="local_dateTime"></param>
+    /// <returns></returns>
+    public static long Convert2BeijingTimestamp( DateTime local_dateTime )
+    {
+        return ( Convert2BeijingDateTime( local_dateTime ).Ticks - 621355968000000000 ) / TimeSpan.TicksPerSecond;
+    }
+
+    /// <summary>
+    /// æœ¬åœ°æ—¶é—´è½¬åŒ—äº¬æ—¶é—´
+    /// </summary>
+    /// <param name="local_dateTime"></param>
+    /// <returns></returns>
+    public static DateTime Convert2BeijingDateTime( DateTime local_dateTime )
+    {
+        return local_dateTime.ToUniversalTime( ).AddHours( 8 );
+    }
+
+    /// <summary>
+    /// è·å–å½“å¤©0ç‚¹0åˆ†
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
+    public static DateTime GetMidnight( DateTime dateTime )
+    {
+        return dateTime.AddHours( -dateTime.Hour ).AddMinutes( -dateTime.Minute ).AddSeconds( -dateTime.Second ).AddMilliseconds( -dateTime.Millisecond );
+    }
+
+    public const string defaultDateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+    public static string DateTime2String( DateTime dateTime )
+    {
+        return dateTime.ToString( defaultDateTimeFormat, CultureInfo.InvariantCulture );
+    }
+
+    public static DateTime String2DateTime( string str )
+    {
+        return DateTime.ParseExact( str, defaultDateTimeFormat, CultureInfo.InvariantCulture );
+    }
 }

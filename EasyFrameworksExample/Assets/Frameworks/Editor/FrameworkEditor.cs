@@ -67,6 +67,7 @@ public class FrameworkEditor : Editor, IPreprocessBuildWithReport
     public static void SetRuntimeModeToDebug( )
     {
         ScriptingDefineSymbolsUtils.AddDefines( "SANDBOX_MODE" );
+        ScriptingDefineSymbolsUtils.AddDefines( "ENABLE_LOG" );
         Log.PINK( "Set Runtime mode to debug." );
     }
 

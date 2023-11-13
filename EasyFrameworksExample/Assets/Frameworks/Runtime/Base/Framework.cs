@@ -37,6 +37,9 @@ public class Framework : MonoBehaviour
     [Header( "最大任务同时运行数量" )]
     public int MaxTaskRunCount = 30;
 
+    [Header( "Canvas预设" )]
+    public Canvas CanvasPrefab = null;
+
     /// <summary>
     /// Entity父节点
     /// </summary>
@@ -74,7 +77,7 @@ public class Framework : MonoBehaviour
     /// </summary>
     public bool Completed { private set; get; } = false;
 
-    private void Awake()
+    private void Awake( )
     {
         if ( null != Instance && Instance != this )
         {
@@ -84,13 +87,12 @@ public class Framework : MonoBehaviour
         Instance = this;
 
         MainCamera = Camera.main;
-        UICamera = transform.Find( "UI/UI Camera" ).GetComponent<Camera>();
+        UICamera = transform.Find( "UI/UI Camera" ).GetComponent<Camera>( );
         Entitys = transform.Find( "World/Entitys" );
         Environment = transform.Find( "World/Environment" );
 
-        //这里如果你要启用 EffectCavnas 和 TopCanvas 你需要去场景里设置Active为False 否则默认你只能获取BaseCanvas
-        var layerRoot = transform.Find( "UI/Layers" );
-        UIManager.InitializeAllLayersAndCanvas( layerRoot, layerRoot.GetComponentsInChildren<Canvas>() );
+
+        UIManager.Init( transform.Find( "UI/Layers" ).GetChild( 0 ), CanvasPrefab );
 
 #if SANDBOX_MODE
         gameObject.AddComponent<Debugger.DebuggerComponent>( );
@@ -113,19 +115,19 @@ public class Framework : MonoBehaviour
         {
 #if UNITY_EDITOR
             case RuntimeMode.Editor:
-                CatAssetManager.SetAssetLoader<EditorAssetLoader>();
+                CatAssetManager.SetAssetLoader<EditorAssetLoader>( );
                 break;
 #endif
             case RuntimeMode.PackageOnly:
-                CatAssetManager.SetAssetLoader<PackageOnlyAssetLoader>();
+                CatAssetManager.SetAssetLoader<PackageOnlyAssetLoader>( );
                 break;
             case RuntimeMode.Updatable:
-                CatAssetManager.SetAssetLoader<UpdatableAssetLoader>();
+                CatAssetManager.SetAssetLoader<UpdatableAssetLoader>( );
                 break;
         }
     }
 
-    private bool CheckCurrentVersionHasUpgrade()
+    private bool CheckCurrentVersionHasUpgrade( )
     {
         var localVersion = DiskAgent.GetString( "ApplictionVersion", Application.version );
         try
@@ -153,14 +155,14 @@ public class Framework : MonoBehaviour
         public int ManifestVersion;
     }
 
-    IEnumerator Start()
+    IEnumerator Start( )
     {
 
         if ( this.RuntimeMode == RuntimeMode.Updatable )
         {
             string versionTxtUri = RemoteIp + "/version.txt";
             UnityWebRequest request = UnityWebRequest.Get( versionTxtUri );
-            yield return request.SendWebRequest();
+            yield return request.SendWebRequest( );
             if ( request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError )
             {
                 Log.PINK( "Request remote version file error：" + request.error );
@@ -197,7 +199,7 @@ public class Framework : MonoBehaviour
         {
             if ( !result.Success )
             {
-                Log.Error( result.ToString() );
+                Log.Error( result.ToString( ) );
                 return;
             }
 
@@ -206,7 +208,7 @@ public class Framework : MonoBehaviour
             if ( this.RuntimeMode == RuntimeMode.Updatable )
             {
                 //遍历所有资源组的更新器
-                List<GroupInfo> groups = CatAssetManager.GetAllGroupInfo();
+                List<GroupInfo> groups = CatAssetManager.GetAllGroupInfo( );
                 foreach ( GroupInfo groupInfo in groups )
                 {
                     GroupUpdater updater = CatAssetManager.GetGroupUpdater( groupInfo.GroupName );
@@ -222,7 +224,7 @@ public class Framework : MonoBehaviour
 
             checkVersionCompleted = true;
         } );
-        yield return new WaitWhile( () => !checkVersionCompleted );
+        yield return new WaitWhile( ( ) => !checkVersionCompleted );
         Fire.Event( FrameworkEvent.CheckAssetBunldeCompleted );
         Completed = true;
     }
@@ -241,11 +243,11 @@ public class Framework : MonoBehaviour
     /// <summary>
     /// 开始热更新
     /// </summary>
-    public void HotUpdate()
+    public void HotUpdate( )
     {
         if ( HotUpdateTrigger )
         {
-            List<GroupInfo> groups = CatAssetManager.GetAllGroupInfo();
+            List<GroupInfo> groups = CatAssetManager.GetAllGroupInfo( );
             foreach ( GroupInfo groupInfo in groups )
             {
                 GroupUpdater updater = CatAssetManager.GetGroupUpdater( groupInfo.GroupName );
@@ -265,9 +267,9 @@ public class Framework : MonoBehaviour
     }
 
 
-    private void Update()
+    private void Update( )
     {
-        CatAssetManager.Update();//资源管理器更新
+        CatAssetManager.Update( );//资源管理器更新
     }
-  
+
 }

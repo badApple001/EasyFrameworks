@@ -44,7 +44,7 @@ public class UIManager
         /// <summary>
         /// 基础UI Canvas层
         /// </summary>
-        Base,
+        Default = 0,
 
         /// <summary>
         /// UI特效层
@@ -72,11 +72,14 @@ public class UIManager
     /// <summary> 所有Cavans节点的父节点 </summary>
     public static Transform LayersRoot { private set; get; }
 
+    /// <summary> Canvas模板预设 </summary>
+    public static Canvas CanvasPrefab { private set; get; }
+
     /// <summary> 默认Canvas Transform实例 </summary>
     public static Transform DefaultCanvasTransform { private set; get; }
 
     /// <summary> 预置Canvas组 </summary>
-    public static Canvas[] CanvasArray { private set; get; }
+    public static Dictionary<CanvasGroup, Canvas> CanvasPool { private set; get; }
 
     /// <summary> 菜单栈 </summary>
     public static StackList<UIForm> formStack = new StackList<UIForm>( );
@@ -89,9 +92,17 @@ public class UIManager
     /// <returns></returns>
     public static Canvas GetCanvas( CanvasGroup group )
     {
-        if ( null != CanvasArray && CanvasArray.Length > ( int ) group )
+        if ( null != CanvasPool )
         {
-            return CanvasArray[ ( int ) group ];
+            if ( !CanvasPool.TryGetValue( group, out Canvas canvas ) )
+            {
+                canvas = GameObject.Instantiate( CanvasPrefab, LayersRoot );
+                canvas.gameObject.name = $"Canvas - {group}";
+                canvas.sortingOrder = ( int ) ( group + 1 ) * 1000;
+                canvas.worldCamera = Framework.Instance.UICamera;
+                CanvasPool.Add( group, canvas );
+            }
+            return canvas;
         }
         return null;
     }
@@ -99,16 +110,22 @@ public class UIManager
     /// <summary>
     /// 初始化
     /// </summary>
-    /// <param name="layerRoot"></param>
+    /// <param name="baseCanvasTransform"></param>
     /// <param name="canvas"></param>
-    public static void InitializeAllLayersAndCanvas( Transform layerRoot, Canvas[] canvas )
+    public static void Init( Transform baseCanvasTransform, Canvas CanvasPrefab )
     {
-        Log.Assert( layerRoot != null, "layerRoot must not be null " );
-        Log.Assert( canvas != null && canvas.Length > 0, "canvas length must greater than 0" );
-
-        UIManager.LayersRoot = layerRoot;
-        UIManager.CanvasArray = canvas;
-        UIManager.DefaultCanvasTransform = canvas[ 0 ].transform;
+        Log.Assert( baseCanvasTransform != null, "baseCanvasTransform must not be null " );
+        Log.Assert( baseCanvasTransform.GetComponent<Canvas>( ) != null, "baseCanvasTransform must a canvas node" );
+        UIManager.LayersRoot = baseCanvasTransform.parent;
+        UIManager.CanvasPool = new Dictionary<CanvasGroup, Canvas>( )
+        {
+            {
+                CanvasGroup.Default,
+                baseCanvasTransform.GetComponent<Canvas>( )
+            }
+        };
+        UIManager.DefaultCanvasTransform = baseCanvasTransform;
+        UIManager.CanvasPrefab = CanvasPrefab;
     }
 
     /// <summary>
@@ -165,7 +182,7 @@ public class UIManager
         GameObject obj = new GameObject( Path.GetFileNameWithoutExtension( assetName ), typeof( Image ) );
         Image img = obj.GetComponent<Image>( );
         //Sprite sp = Loader.Load<Sprite>( assetName, obj );
-        parent = parent == null ? CanvasArray[ 0 ].transform : parent;
+        parent = parent == null ? CanvasPool[ CanvasGroup.Default ].transform : parent;
         obj.transform.SetParent( parent, false );
         //if ( sp != null )
         //{
@@ -221,7 +238,11 @@ public class UIManager
     /// <returns></returns>
     public static async Task<T> Open<T>( ) where T : UIForm
     {
+        return await Open<T>( CanvasGroup.Default );
+    }
 
+    public static async Task<T> Open<T>( CanvasGroup group ) where T : UIForm
+    {
         //找到已经缓存的且处于自由或者关闭状态下的窗口
         var cacheForm = List_CacheForms.Find( form =>
         {
@@ -256,7 +277,7 @@ public class UIManager
 
         //从本地加载实例化
         string assetPath = $"Assets/AssetBundle/UI/Form/{formClsName}.prefab";
-        GameObject instance = await CatAssetManager.InstantiateAsync( assetPath, GetCanvas( CanvasGroup.Base ).transform );
+        GameObject instance = await CatAssetManager.InstantiateAsync( assetPath, GetCanvas( group ).transform );
 
 
         //获取或创建Component并记录

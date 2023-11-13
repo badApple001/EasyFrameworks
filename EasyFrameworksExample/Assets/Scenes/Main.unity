@@ -357,6 +357,11 @@ PrefabInstance:
       propertyPath: RuntimeMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 103274791, guid: e1e243e51741fd8428a2d323e0b7ede1, type: 3}
+      propertyPath: CanvasPrefab
+      value: 
+      objectReference: {fileID: 4927658195591412268, guid: 105e56dbabf8be649b0ac41fe5c666b6,
+        type: 3}
     - target: {fileID: 239940586, guid: e1e243e51741fd8428a2d323e0b7ede1, type: 3}
       propertyPath: InitOnAwake
       value: 1
