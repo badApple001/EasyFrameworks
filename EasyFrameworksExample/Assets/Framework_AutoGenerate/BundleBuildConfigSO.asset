@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce91b17c92145649aa4ffff367f9ade, type: 3}
   m_Name: BundleBuildConfigSO
   m_EditorClassIdentifier: 
-  ManifestVersion: 7
+  ManifestVersion: 8
   TargetPlatforms: 0d000000
   Options: 9
   GlobalCompress: 2
@@ -139,7 +139,7 @@ MonoBehaviour:
     BundleIdentifyName: AssetBundle/Fonts.bundle
     Group: Fonts
     IsRaw: 0
-    AssetsLength: 31485717
+    AssetsLength: 23093009
     CompressOption: 2
     EncryptOption: 2
     Assets:
@@ -158,7 +158,7 @@ MonoBehaviour:
     - Name: Assets/AssetBundle/Fonts/DancingScript-Regular SDF.asset
       Length: 651512
     - Name: Assets/AssetBundle/Fonts/fnt SDF.asset
-      Length: 8400191
+      Length: 7483
     - Name: Assets/AssetBundle/Fonts/fnt.ttf
       Length: 6651864
     - Name: Assets/AssetBundle/Fonts/IndieFlower SDF.asset

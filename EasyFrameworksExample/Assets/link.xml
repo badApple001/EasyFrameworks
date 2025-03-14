@@ -1,0 +1,62 @@
+<linker>
+    <assembly fullname="UnityEngine.AnimationModule">
+        <type fullname="UnityEngine.AnimationClip"/>
+    </assembly>
+    <assembly fullname="UnityEngine.AnimationModule">
+        <type fullname="UnityEngine.Animator"/>
+    </assembly>
+    <assembly fullname="UnityEngine.AnimationModule">
+        <type fullname="UnityEngine.Avatar"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.BoxCollider"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.MeshCollider"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.SphereCollider"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.CapsuleCollider"/>
+    </assembly>
+    <assembly fullname="UnityEngine.CoreModule">
+        <type fullname="UnityEngine.SkinnedMeshRenderer"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.Rigidbody"/>
+    </assembly>
+    <assembly fullname="UnityEngine.CoreModule">
+        <type fullname="UnityEngine.LightProbes"/>
+    </assembly>
+    <assembly fullname="UnityEngine.CoreModule">
+        <type fullname="UnityEngine.LightProbeGroup"/>
+    </assembly>
+    <assembly fullname="UnityEngine.CoreModule">
+        <type fullname="UnityEngine.LODGroup"/>
+    </assembly>
+    <assembly fullname="Unity.Animation.Rigging">
+        <type fullname="UnityEngine.Animations.Rigging.Rig"/>
+    </assembly>
+    <assembly fullname="Unity.Animation.Rigging">
+        <type fullname="UnityEngine.Animations.Rigging.RigBuilder"/>
+    </assembly>
+    <assembly fullname="Unity.Animation.Rigging">
+        <type fullname="UnityEngine.Animations.Rigging.TwoBoneIKConstraint"/>
+    </assembly>
+    <assembly fullname="Unity.Animation.Rigging">
+        <type fullname="UnityEngine.Animations.Rigging.OverrideTransform"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.PhysicMaterial"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.HingeJoint"/>
+    </assembly>
+    <assembly fullname="UnityEngine.PhysicsModule">
+        <type fullname="UnityEngine.ConfigurableJoint"/>
+    </assembly>
+    <assembly fullname="UnityEngine.AnimationModule">
+        <type fullname="UnityEngine.Animation"/>
+    </assembly>
+</linker>

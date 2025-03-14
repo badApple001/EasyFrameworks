@@ -40,6 +40,9 @@ public class Framework : MonoBehaviour
     [Header( "Canvas预设" )]
     public Canvas CanvasPrefab = null;
 
+    [Header("帧率限制")]
+    public int TargetFrameRate = 60;
+
     /// <summary>
     /// Entity父节点
     /// </summary>
@@ -90,16 +93,19 @@ public class Framework : MonoBehaviour
         UICamera = transform.Find( "UI/UI Camera" ).GetComponent<Camera>( );
         Entitys = transform.Find( "World/Entitys" );
         Environment = transform.Find( "World/Environment" );
-
+        Application.targetFrameRate = TargetFrameRate;
 
         UIManager.Init( transform.Find( "UI/Layers" ).GetChild( 0 ), CanvasPrefab );
 
 #if SANDBOX_MODE
         gameObject.AddComponent<Debugger.DebuggerComponent>( );
 #endif
-        //版本升级检测
+
 #if !UNITY_EDITOR
+        //版本升级检测
         UpgradeVersionTrigger = CheckCurrentVersionHasUpgrade();
+        if ( RuntimeMode != RuntimeMode.Updatable )
+            RuntimeMode = RuntimeMode.PackageOnly;
 #endif
 
         CatAssetManager.UnloadBundleDelayTime = UnloadBundleDelayTime;

@@ -2,7 +2,6 @@ using CatAsset.Runtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Purchasing;
 using UnityEngine;
 
 [CustomEditor( typeof( Framework ) )]
@@ -16,6 +15,8 @@ public class FrameworksInspector : Editor
     SerializedProperty UnloadAssetDelayTime;
     SerializedProperty MaxTaskRunCount;
     SerializedProperty CanvasPrefab;
+    SerializedProperty TargetFrameRate;
+
     private void OnEnable( )
     {
         framework = ( Framework ) target;
@@ -25,6 +26,7 @@ public class FrameworksInspector : Editor
         UnloadAssetDelayTime = serializedObject.FindProperty( "UnloadAssetDelayTime" );
         MaxTaskRunCount = serializedObject.FindProperty( "MaxTaskRunCount" );
         CanvasPrefab = serializedObject.FindProperty( "CanvasPrefab" );
+        TargetFrameRate = serializedObject.FindProperty( "TargetFrameRate" );
     }
 
     public override void OnInspectorGUI( )
@@ -39,6 +41,7 @@ public class FrameworksInspector : Editor
         EditorGUILayout.PropertyField( UnloadAssetDelayTime );
         EditorGUILayout.PropertyField( MaxTaskRunCount );
         EditorGUILayout.PropertyField( CanvasPrefab );
+        EditorGUILayout.PropertyField( TargetFrameRate );
         serializedObject.ApplyModifiedProperties( );
     }
 }
