@@ -182,7 +182,7 @@ public class PoolManager : MonoBehaviour
     /// <param name="delay"></param>
     public void Despawn( Transform obj, float delay )
     {
-        Timer.SetTimeout( delay, ( ) => Despawn( obj ) );
+        Timer.Delay( delay, ( ) => Despawn( obj ) );
     }
 
     /// <summary>

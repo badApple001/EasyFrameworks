@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce91b17c92145649aa4ffff367f9ade, type: 3}
   m_Name: BundleBuildConfigSO
   m_EditorClassIdentifier: 
-  ManifestVersion: 22
-  TargetPlatforms: 13000000
+  ManifestVersion: 7
+  TargetPlatforms: 0d000000
   Options: 9
   GlobalCompress: 2
   GlobalEncrypt: 2
@@ -126,78 +126,78 @@ MonoBehaviour:
     BundleIdentifyName: AssetBundle/Entitys.bundle
     Group: Entitys
     IsRaw: 0
-    AssetsLength: 5635
+    AssetsLength: 5833
     CompressOption: 2
     EncryptOption: 2
     Assets:
     - Name: Assets/AssetBundle/Entitys/Cube.prefab
-      Length: 2810
+      Length: 2909
     - Name: Assets/AssetBundle/Entitys/Sphere.prefab
-      Length: 2825
+      Length: 2924
   - DirectoryName: AssetBundle
     BundleName: Fonts.bundle
     BundleIdentifyName: AssetBundle/Fonts.bundle
     Group: Fonts
     IsRaw: 0
-    AssetsLength: 31425254
+    AssetsLength: 31485717
     CompressOption: 2
     EncryptOption: 2
     Assets:
     - Name: Assets/AssetBundle/Fonts/ApacheLicense2.0.txt
-      Length: 11358
+      Length: 11560
     - Name: Assets/AssetBundle/Fonts/Bangers-Regular SDF.asset
-      Length: 645623
+      Length: 651554
     - Name: Assets/AssetBundle/Fonts/BioRhymeExpanded-Regular SDF.asset
-      Length: 642776
+      Length: 648572
     - Name: Assets/AssetBundle/Fonts/consola SDF.asset
-      Length: 8399148
+      Length: 8399593
     - Name: Assets/AssetBundle/Fonts/consola.ttf
       Length: 459180
     - Name: Assets/AssetBundle/Fonts/CormorantUnicase-Regular SDF.asset
-      Length: 654350
+      Length: 660767
     - Name: Assets/AssetBundle/Fonts/DancingScript-Regular SDF.asset
-      Length: 645581
+      Length: 651512
     - Name: Assets/AssetBundle/Fonts/fnt SDF.asset
-      Length: 8399715
+      Length: 8400191
     - Name: Assets/AssetBundle/Fonts/fnt.ttf
       Length: 6651864
     - Name: Assets/AssetBundle/Fonts/IndieFlower SDF.asset
-      Length: 645219
+      Length: 651123
     - Name: Assets/AssetBundle/Fonts/Merriweather-Regular SDF.asset
-      Length: 650594
+      Length: 656795
     - Name: Assets/AssetBundle/Fonts/Orbitron-Regular SDF.asset
-      Length: 624084
+      Length: 628962
     - Name: Assets/AssetBundle/Fonts/PressStart2P-Regular SDF.asset
-      Length: 582576
+      Length: 585483
     - Name: Assets/AssetBundle/Fonts/Raleway-Regular SDF.asset
-      Length: 646372
+      Length: 652357
     - Name: Assets/AssetBundle/Fonts/Roboto-Black SDF.asset
-      Length: 578604
+      Length: 581329
     - Name: Assets/AssetBundle/Fonts/Roboto-Regular SDF.asset
-      Length: 578463
+      Length: 581175
     - Name: Assets/AssetBundle/Fonts/ZCOOLKuaiLe-Regular SDF.asset
-      Length: 599147
+      Length: 602783
     - Name: Assets/TextMesh Pro/Shaders/TMP_SDF.shader
-      Length: 10600
+      Length: 10917
   - DirectoryName: AssetBundle
     BundleName: UI.bundle
     BundleIdentifyName: AssetBundle/UI.bundle
     Group: UI
     IsRaw: 0
-    AssetsLength: 2949743
+    AssetsLength: 2961948
     CompressOption: 2
     EncryptOption: 2
     Assets:
     - Name: Assets/AssetBundle/UI/Animations/CloseUIForm.anim
       Length: 7865
     - Name: Assets/AssetBundle/UI/Animations/HideHomeUI.anim
-      Length: 6376
+      Length: 6653
     - Name: Assets/AssetBundle/UI/Animations/OpenUIForm.anim
       Length: 9327
     - Name: Assets/AssetBundle/UI/Form/HomeForm.prefab
-      Length: 81034
+      Length: 83732
     - Name: Assets/AssetBundle/UI/Form/LoadingForm.prefab
-      Length: 23773
+      Length: 24587
     - Name: Assets/AssetBundle/UI/Sprites/Home/AD1_icon.png
       Length: 7530
     - Name: Assets/AssetBundle/UI/Sprites/Home/AD2_icon.png
@@ -238,11 +238,11 @@ MonoBehaviour:
       Length: 350200
     - Name: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF -
         Fallback.asset
-      Length: 9525
+      Length: 9880
     - Name: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
-      Length: 2256862
+      Length: 2264683
     - Name: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
-      Length: 7674
+      Length: 7914
     - Name: Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component
         Icon.psd
       Length: 89826

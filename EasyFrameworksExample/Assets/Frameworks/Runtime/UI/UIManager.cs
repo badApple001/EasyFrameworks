@@ -254,7 +254,7 @@ public class UIManager
             if ( Dict_WaitReleaseFormsDict.TryGetValue( cacheForm, out ulong timerId ) )
             {
                 Dict_WaitReleaseFormsDict.Remove( cacheForm );
-                Timer.ClearTimer( timerId );
+                Timer.Kill( timerId );
             }
 
             //入栈
@@ -355,10 +355,10 @@ public class UIManager
         if ( Dict_WaitReleaseFormsDict.ContainsKey( uIForm ) )
         {
             ulong timerId = Dict_WaitReleaseFormsDict[ uIForm ];
-            Timer.ClearTimer( timerId );
+            Timer.Kill( timerId );
         }
 
-        ulong timerHandler = Timer.SetTimeout( uIForm.DeferSconds, ( ) =>
+        ulong timerHandler = Timer.Delay( uIForm.DeferSconds, ( ) =>
         {
             List_CacheForms.Remove( uIForm );
 

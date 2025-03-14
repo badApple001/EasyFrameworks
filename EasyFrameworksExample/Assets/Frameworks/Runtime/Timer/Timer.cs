@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,10 @@ using UnityEngine;
 ///
 /// Timer 轻量高效定时器
 /// 
-/// 当前定时器程序为游戏运行真实时间 
-/// 内置对象池Task回收
-/// 已及更方便灵活的调用方式
-/// 
 /// Anchor: ChenJC
 /// Time: 2022/10/09
-/// 原文: https://blog.csdn.net/qq_39162566/article/details/113105351
+/// Feedback: Isysprey@foxmail.com
+/// Example: https://blog.csdn.net/qq_39162566/article/details/113105351
 /// </summary>
 public class Timer : MonoBehaviour
 {
@@ -28,7 +25,7 @@ public class Timer : MonoBehaviour
         public Action func;
 
         //你可以通过此方法来获取定时器的运行进度  0 ~ 1  1.0表示即将要调用func
-        //你可以通过 GetTimer( id ) 获取当前Task的Clone体 
+        //你可以通过 Find( id ) 获取当前Task的Clone体 
         public float progress
         {
             get
@@ -38,12 +35,9 @@ public class Timer : MonoBehaviour
         }
 
         //获取一个当前TimerTask的副本出来
-        public TimerTask Clone()
+        public TimerTask Clone( )
         {
-            //为啥这里不用反射来遍历属性赋值
-            //其一：没几个字段写一下手残不了
-            //其二: 我乐意 我想用反射写就用反射写,不想用反射写就不用反射写 管我呢
-            var timerTask = new TimerTask();
+            var timerTask = new TimerTask( );
             timerTask.ID = ID;
             timerTask.expirationTime = expirationTime;
             timerTask.lifeCycle = lifeCycle;
@@ -53,13 +47,13 @@ public class Timer : MonoBehaviour
         }
 
         //释放回收当前定时器
-        public void Destory()
+        public void Recycle( )
         {
             freeTaskCls.Enqueue( this );
         }
 
-        //重置
-        public void Reset()
+        //刷新
+        public void Refresh( )
         {
             expirationTime = Time.time + lifeCycle;
         }
@@ -68,11 +62,11 @@ public class Timer : MonoBehaviour
 
     #region Member property
 
-    protected static List<TimerTask> activeTaskCls = new List<TimerTask>();//激活中的TimerTask对象
-    protected static Queue<TimerTask> freeTaskCls = new Queue<TimerTask>();//闲置TimerTask对象
-    protected static HashSet<Action> lateChannel = new HashSet<Action>();//确保callLate调用的唯一性
-    protected static ulong idOffset = 1000; //timer的唯一标识
-    protected static bool inited = false; //避免重复创建 防呆设计
+    protected static List<TimerTask> activeTaskCls = new List<TimerTask>( );//激活中的TimerTask对象
+    protected static Queue<TimerTask> freeTaskCls = new Queue<TimerTask>( );//闲置TimerTask对象
+    protected static HashSet<Action> lateChannel = new HashSet<Action>( );//确保callLate调用的唯一性
+    protected static ulong timerID = 1000; //timer的唯一标识
+
     #endregion
 
 
@@ -84,15 +78,15 @@ public class Timer : MonoBehaviour
         if ( !lateChannel.Contains( func ) )
         {
             lateChannel.Add( func );
-            SetTimeout( 0f, func );
+            Delay( 0f, func );
         }
     }
 
 
     //delay秒后 执行一次回调
-    public static ulong SetTimeout( float delay, Action func )
+    public static ulong Delay( float delay, Action func )
     {
-        return SetInterval( delay, func, false, 1 );
+        return Loop( delay, func, false, 1 );
     }
 
     /// <summary>
@@ -103,28 +97,25 @@ public class Timer : MonoBehaviour
     /// <param name="immediate"> 是否立即执行一次 </param>
     /// <param name="times"> 调用的次数: 默认永久循环 当值<=0时会一直更新调用 当值>0时 循环指定次数后 停止调用 </param>
     /// <returns></returns>
-    public static ulong SetInterval( float interval, Action func, bool immediate = false, int times = 0 )
+    public static ulong Loop ( float interval, Action func, bool immediate = false, int times = 0 )
     {
         //从free池中 获取一个闲置的TimerTask对象
-        var timer = GetFreeTimerTask();
+        var timer = GetFreeTimerTask( );
         timer.lifeCycle = interval;
-        timer.Reset();
+        timer.Refresh( );
         timer.func = func;
         timer.times = times;
-        timer.ID = ++idOffset;
-
-        //尝试初始化
-        Init();
+        timer.ID = ++timerID;
 
         //立即执行一次
         if ( immediate )
         {
             --timer.times;
-            func?.Invoke();
+            func?.Invoke( );
             if ( timer.times == 0 )
             {
 
-                timer.Destory();
+                timer.Recycle( );
             }
             else
             {
@@ -138,7 +129,7 @@ public class Timer : MonoBehaviour
             activeTaskCls.Add( timer );
         }
 
-        return idOffset;
+        return timerID;
     }
 
     #endregion
@@ -151,12 +142,12 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="ID"></param>
     /// <returns></returns>
-    public static TimerTask GetTimer( ulong ID )
+    public static TimerTask Find( ulong ID )
     {
         return activeTaskCls.Find( ( TimerTask t ) =>
-         {
-             return t.ID == ID;
-         } )?.Clone();
+        {
+            return t.ID == ID;
+        } )?.Clone( );
     }
 
     /// <summary>
@@ -164,12 +155,12 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="tag"></param>
     /// <returns></returns>
-    public static List<TimerTask> GetTimer( Action func )
+    public static List<TimerTask> Find( Action func )
     {
         return activeTaskCls.FindAll( t =>
-         {
-             return t.func == func;
-         } );
+        {
+            return t.func == func;
+        } );
     }
 
     /// <summary>
@@ -177,7 +168,7 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="tag"></param>
     /// <returns></returns>
-    public static List<TimerTask> GetTimer( object target )
+    public static List<TimerTask> Find( object target )
     {
         return activeTaskCls.FindAll( t =>
         {
@@ -194,27 +185,27 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="ID">定时器标签</param>
     /// <returns></returns>
-    public static void ClearTimer( ulong ID )
+    public static void Kill( ulong ID )
     {
         int index = activeTaskCls.FindIndex( ( TimerTask t ) =>
-         {
-             return t.ID == ID;
-         } );
+        {
+            return t.ID == ID;
+        } );
 
         if ( index != -1 )
         {
             var timerTask = activeTaskCls[ index ];
-            ClearTimers( new List<TimerTask>() { timerTask } );
+            KillTimers( new List<TimerTask>( ) { timerTask } );
         }
     }
 
 
     /// <summary>
-    /// 通过类型来ClearTimer
+    /// 通过类型来Kill
     /// @ps: 移除同类型的所有成员方法定时器  包含( lambda 和 其它类实体 )
     /// </summary>
     /// <param name="clsType"></param>
-    public static void ClearTimer<T>()
+    public static void Kill<T>( )
     {
         var type = typeof( T );
         var clsName = type.FullName;
@@ -223,7 +214,7 @@ public class Timer : MonoBehaviour
         {
             if ( null != t.func && null != t.func.Target )
             {
-                var fullname = t.func.Target.GetType().FullName;
+                var fullname = t.func.Target.GetType( ).FullName;
                 var currentClsNameClip = fullname.Split( '+' );
                 if ( currentClsNameClip.Length > 0 )
                 {
@@ -236,7 +227,7 @@ public class Timer : MonoBehaviour
             return false;
         } );
 
-        ClearTimers( allMatchTask );
+        KillTimers( allMatchTask );
     }
 
     /// <summary>
@@ -244,10 +235,10 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="func">处理方法</param>
     /// <returns></returns>
-    public static void ClearTimer( Action func )
+    public static void Kill( Action func )
     {
         var allMatchTask = activeTaskCls.FindAll( t => t.func == func );
-        ClearTimers( allMatchTask );
+        KillTimers( allMatchTask );
     }
 
 
@@ -267,12 +258,12 @@ public class Timer : MonoBehaviour
     //    {
     //        test(); //此方法内的闭包调用支持
     //        test2(); //此方法内的闭包调用不支持
-    //        Timer.SetInterval( 1f,UpdatePerSecond ); //成员方法支持
+    //        Timer.Loop( 1f,UpdatePerSecond ); //成员方法支持
     //    }
     //    //这个方法内的闭包支持
     //    private void test()
     //    {
-    //        Timer.SetTimeout( 1.0f, () =>
+    //        Timer.Delay( 1.0f, () =>
     //        {
     //            //在lambda内部定义的变量
     //            string t = "12313213";
@@ -290,7 +281,7 @@ public class Timer : MonoBehaviour
     //    {
     //        //在lambda外定义的变量
     //        string t = "12313213";
-    //        Timer.SetTimeout( 1.0f, () =>
+    //        Timer.Delay( 1.0f, () =>
     //        {
     //            //在lambda内部访问lambda外部的变量行为会让当前闭包的 Target变成一个新的类
     //            t = "1231";
@@ -301,7 +292,7 @@ public class Timer : MonoBehaviour
     //    //清理这个类的所有定时器调度
     //    private void clearTime()
     //    {
-    //        Timer.ClearTimer( this );
+    //        Timer.Kill( this );
     //    }
     //}
     /// 
@@ -309,21 +300,21 @@ public class Timer : MonoBehaviour
     /// </summary>
     /// <param name="func">处理方法</param>
     /// <returns></returns>
-    public static void ClearTimer( object target )
+    public static void Kill( object target )
     {
         var allMatchTask = activeTaskCls.FindAll( t => t.func.Target == target );
-        ClearTimers( allMatchTask );
+        KillTimers( allMatchTask );
     }
 
 
     /// <summary>
     /// 清理所有定时器
     /// </summary>
-    public static void ClearTimers()
+    public static void KillAll( )
     {
-        lateChannel.Clear();
+        lateChannel.Clear( );
         activeTaskCls.ForEach( timer => freeTaskCls.Enqueue( timer ) );
-        activeTaskCls.Clear();
+        activeTaskCls.Clear( );
     }
 
 
@@ -331,7 +322,7 @@ public class Timer : MonoBehaviour
     /// 批量清理定时器
     /// </summary>
     /// <param name="allMatchTask"></param>
-    public static void ClearTimers( List<TimerTask> allMatchTask )
+    public static void KillTimers( List<TimerTask> allMatchTask )
     {
         allMatchTask?.ForEach( task =>
         {
@@ -349,15 +340,23 @@ public class Timer : MonoBehaviour
 
     #region System methods
 
-    //Update更新之前
-    private void Awake()
+    [RuntimeInitializeOnLoadMethod( RuntimeInitializeLoadType.BeforeSceneLoad )]
+    static void Init( )
     {
-        DontDestroyOnLoad( gameObject );
-        StartCoroutine( TimeElapse() );
+        activeTaskCls.Clear( );
+        freeTaskCls.Clear( );
+        lateChannel.Clear( );
+        timerID = 1000;
+        DontDestroyOnLoad( new GameObject( "Timer", typeof( Timer ) ) );
     }
 
-    //定时器调度
-    private IEnumerator TimeElapse()
+    private void Awake( )
+    {
+        StartCoroutine( TimeElapse( ) );
+    }
+
+   
+    private IEnumerator TimeElapse( )
     {
         TimerTask t = null;
         while ( true )
@@ -374,7 +373,7 @@ public class Timer : MonoBehaviour
                         if ( t.times == 1 )
                         {
                             activeTaskCls.RemoveAt( i-- );
-                            t.Destory();
+                            t.Recycle( );
 
                             if ( lateChannel.Count != 0 && lateChannel.Contains( t.func ) )
                             {
@@ -382,9 +381,9 @@ public class Timer : MonoBehaviour
                             }
                         }
 
-                        t.Reset();
+                        t.Refresh( );
                         --t.times;
-                        t.func();
+                        t.func( );
                     }
                 }
             }
@@ -392,29 +391,21 @@ public class Timer : MonoBehaviour
         }
     }
 
-    //初始化
-    protected static void Init()
-    {
-        if ( !inited )
-        {
-            inited = true;
-            var inst = new GameObject( "TimerNode" );
-            inst.AddComponent<Timer>();
-        }
-    }
-
-    //获取闲置定时器
-    protected static TimerTask GetFreeTimerTask()
+  
+    protected static TimerTask GetFreeTimerTask( )
     {
         if ( freeTaskCls.Count > 0 )
         {
-            return freeTaskCls.Dequeue();
+            return freeTaskCls.Dequeue( );
         }
-        return new TimerTask();
+        return new TimerTask( );
     }
 
     #endregion
 
 }
+
+
+
 
 

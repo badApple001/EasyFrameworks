@@ -92,12 +92,12 @@ public class HomeFormManager
         Fire.Off( this );//清理当前类的所有注册事件
         if ( clearAllTimer )//清理定时器
         {
-            Timer.ClearTimer( this );
+            Timer.Kill( this );
         }
     }
 
 
-    //你可以通过 Timer.SetInterval( 1f, Update ); 来每秒更新这个方法
+    //你可以通过 Timer.Loop( 1f, Update ); 来每秒更新这个方法
     //什么时候需要呢?  答: 如果界面不显示的情况下 也需要每秒对这个界面的数据进行更新
     //public void Update()
     //{
@@ -121,7 +121,7 @@ public class HomeFormManager
     /// </summary>
     ~HomeFormManager( )
     {
-        Timer.ClearTimer( this ); //无论有没有启用定时器 你都可以执行ClearTimer 它不会报错 且 它是你的兜底处理 防止忘记清理当前类的定时器
+        Timer.Kill( this ); //无论有没有启用定时器 你都可以执行ClearTimer 它不会报错 且 它是你的兜底处理 防止忘记清理当前类的定时器
     }
 
     #endregion

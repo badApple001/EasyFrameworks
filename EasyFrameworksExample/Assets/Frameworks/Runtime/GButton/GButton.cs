@@ -81,7 +81,7 @@ public class GButton : Button, IPointerDownHandler, IPointerUpHandler
         if ( !string.IsNullOrEmpty( dbtEvent ) )
         {
             //AnalyticsController.UploadOpenUI( dbtEvent );
-            Timer.SetTimeout( 0.2f, ( ) =>
+            Timer.Delay( 0.2f, ( ) =>
             {
                 //AdsController.PlayInsertAd( dbtEvent );
             } );

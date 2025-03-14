@@ -58,19 +58,19 @@ public class UIForm : MonoBehaviour
     /// <summary> 延时调度一次 </summary>
     public void ScheduleOnce( float delay, System.Action handler )
     {
-        Timer.SetTimeout( delay, handler );
+        Timer.Delay( delay, handler );
     }
 
     /// <summary> 间隔多少秒调度一次 </summary>
     public void ScheduleUpdate( float interval, System.Action handler, bool immediately = false )
     {
-        Timer.SetInterval( interval, handler, immediately );
+        Timer.Loop( interval, handler, immediately );
     }
 
     /// <summary> 取消调度 忘记取消了? 别怕! 当前窗口关闭的时候会自动清理所有定时器 </summary>
     public void UnShedule( System.Action handler )
     {
-        Timer.ClearTimer( handler );
+        Timer.Kill( handler );
     }
 
     /// <summary> 关闭窗口 执行关闭动画后隐藏 </summary>
@@ -83,7 +83,7 @@ public class UIForm : MonoBehaviour
         }
 
         //清理自身的定时器
-        Timer.ClearTimer( this );
+        Timer.Kill( this );
 
         //清理事件
         Fire.Off( this );
