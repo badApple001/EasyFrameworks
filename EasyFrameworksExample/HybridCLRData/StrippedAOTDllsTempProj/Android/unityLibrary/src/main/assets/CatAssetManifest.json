@@ -1,0 +1,541 @@
+{
+    "ManifestVersion": 6,
+    "Platform": "Android",
+    "Bundles": [
+        {
+            "Directory": "AssetBundle",
+            "BundleName": "Audio.bundle",
+            "Group": "Audio",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 1980456,
+            "MD5": "fc1ee6f0abe740172d2feeab86b24da1",
+            "Hash": "46d1a41ab404b173cd29b06139f63520",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": false,
+            "EncryptOption": 2,
+            "Assets": [
+                {
+                    "Name": "Assets/AssetBundle/Audio/Music/Wind Ambience.mp3",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Alert.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Attack.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Death.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Hoverbot_Movement.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Turret_Alert.mp3",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Turret_Attack.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Enemies/Turret_Death.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Health.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Jetpack.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Weapon_Medium.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Pickups/Pickup_Weapon_Small.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Damage_Tick.mp3",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Damage_Tick2.mp3",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Footstep.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Jetpack_Use.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Jump.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Land.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Player/Land_Damage.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/UI/Notification_Chime.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/UI/Notification_End.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/UI/Notification_Snap.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Blaster_Shot.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Charge_BuildUp.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Charge_Loop.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Explosion.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Launcher_Release.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Shotgun_Shot.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Audio/SFX/Weapons/Weapon_Cooling.wav",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                }
+            ]
+        },
+        {
+            "Directory": "AssetBundle",
+            "BundleName": "Entitys.bundle",
+            "Group": "Entitys",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 1553,
+            "MD5": "6e70519c50aab5de000e3913db357e6f",
+            "Hash": "121f9652c1337189f3cb7af2e93fd4b7",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": true,
+            "EncryptOption": 2,
+            "Assets": [
+                {
+                    "Name": "Assets/AssetBundle/Entitys/Cube.prefab",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Entitys/Sphere.prefab",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                }
+            ]
+        },
+        {
+            "Directory": "AssetBundle",
+            "BundleName": "Fonts.bundle",
+            "Group": "Fonts",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 6888818,
+            "MD5": "09907f3330529efcda048be4bbbdc8cc",
+            "Hash": "c04b0c57aa2d5ecac15fc13c49709660",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": false,
+            "EncryptOption": 2,
+            "Assets": [
+                {
+                    "Name": "Assets/AssetBundle/Fonts/ApacheLicense2.0.txt",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Bangers-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/BioRhymeExpanded-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/consola SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                        "Assets/AssetBundle/Fonts/consola.ttf"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/consola.ttf",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/CormorantUnicase-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/DancingScript-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/fnt SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                        "Assets/AssetBundle/Fonts/fnt.ttf"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/fnt.ttf",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/IndieFlower SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Merriweather-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Orbitron-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/PressStart2P-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Raleway-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Roboto-Black SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/Roboto-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/Fonts/ZCOOLKuaiLe-Regular SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF.shader"
+                    ]
+                },
+                {
+                    "Name": "Assets/TextMesh Pro/Shaders/TMP_SDF.shader",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                }
+            ]
+        },
+        {
+            "Directory": "AssetBundle",
+            "BundleName": "UI.bundle",
+            "Group": "UI",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 655207,
+            "MD5": "52f084bc15b31cfc7338b91eb4109672",
+            "Hash": "17b1f8d9b554a96928f5a461377bae89",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": false,
+            "EncryptOption": 2,
+            "Assets": [
+                {
+                    "Name": "Assets/AssetBundle/UI/Animations/CloseUIForm.anim",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Animations/HideHomeUI.anim",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Animations/OpenUIForm.anim",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Form/HomeForm.prefab",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/AssetBundle/UI/Sprites/Home/camera_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/diamond_icon.png",
+                        "Assets/AssetBundle/UI/Animations/HideHomeUI.anim",
+                        "Assets/AssetBundle/UI/Sprites/Home/set_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/toilet_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/resources_bar.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/card_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/purchase3_btn.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/purchase1_btn.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/start.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/AD2_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/coin_icon.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/add_icon.png",
+                        "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                        "Assets/AssetBundle/UI/Sprites/Home/purchase2_btn.png",
+                        "Assets/AssetBundle/UI/Sprites/Home/AD1_icon.png"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Form/LoadingForm.prefab",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset"
+                    ]
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/AD1_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/AD2_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/add_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/camera_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/card_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/coin_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/countdown1_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/countdown2_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/diamond_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/discounts_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/purchase1_btn.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/purchase2_btn.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/purchase3_btn.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/resources_bar.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/set_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/slash.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/start.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/AssetBundle/UI/Sprites/Home/toilet_icon.png",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                        "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+                    ]
+                },
+                {
+                    "Name": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+                    "IsAtlasPackable": false,
+                    "Dependencies": [
+                        "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                        "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+                        "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+                    ]
+                },
+                {
+                    "Name": "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                },
+                {
+                    "Name": "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                }
+            ]
+        },
+        {
+            "Directory": "",
+            "BundleName": "Redundancy_0.bundle",
+            "Group": "UI",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 2468,
+            "MD5": "d0742a8a79edd1ebf0ebcff9c2af328b",
+            "Hash": "f1a936eb583f0657d2caef91e4903fda",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": false,
+            "EncryptOption": 2,
+            "Assets": [
+                {
+                    "Name": "Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+                    "IsAtlasPackable": false,
+                    "Dependencies": []
+                }
+            ]
+        },
+        {
+            "Directory": "",
+            "BundleName": "UnityBuiltInShaders.bundle",
+            "Group": "Base",
+            "IsRaw": false,
+            "IsScene": false,
+            "Length": 119575,
+            "MD5": "486ac7ca1f78aa0c4f32d8ae2c68d35a",
+            "Hash": "6551d17e0b9bbf467333f4a06cdb7cc0",
+            "IsAppendHash": false,
+            "IsDependencyBuiltInShaderBundle": false,
+            "EncryptOption": 2,
+            "Assets": []
+        }
+    ]
+}
