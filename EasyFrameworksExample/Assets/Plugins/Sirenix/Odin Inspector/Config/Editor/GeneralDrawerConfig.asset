@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da583f3bd4e118249b7ce639ee9173d3, type: 3}
-  m_Name: PoolSettingAsset
+  m_Script: {fileID: -645759843, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
+  m_Name: GeneralDrawerConfig
   m_EditorClassIdentifier: 
-  settings: []
-  createdTime: "2023\u5E7410\u670817\u65E5 23:35:39"
-  updatedTime: "2025\u5E743\u670814\u65E5 14:06:57"

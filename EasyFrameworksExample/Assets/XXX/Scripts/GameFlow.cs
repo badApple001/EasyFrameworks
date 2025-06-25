@@ -9,7 +9,14 @@ public class GameFlow : MonoBehaviour
 {
 
     public static GameFlow Instance { get; private set; } = null;
-    
+
+    public List<string> AOTDlls = new List<string>( )
+    {
+        "mscorlib.dll.bytes",
+        "System.dll.bytes",
+        "System.Core.dll.bytes",
+        "HotUpdate.dll.bytes"
+    };
 
     private void Awake( )
     {
@@ -24,7 +31,7 @@ public class GameFlow : MonoBehaviour
 
     //游戏主数据
     public GUserData gameCacheData { private set; get; } = null;
-  
+
     private void Start( )
     {
         gameCacheData = DiskAgent.Load( ( ) =>
@@ -65,8 +72,11 @@ public class GameFlow : MonoBehaviour
         //游戏启动次数自增
         gameCacheData.gameLaunchCount++;
 
-        //加载配置
-        Go( );
+        //公共模块和基础模块初始化
+        HandlerManager.Do<InitCommonHandler>( );
+
+        //热更新模块
+        HandlerManager.Find<InitHotUpdateHandler>( ).InitHotUpdate( AOTDlls, Go );
     }
 
     void Go( )
@@ -74,11 +84,16 @@ public class GameFlow : MonoBehaviour
         //在线配置
         HandlerManager.Do<OnLineConfigHandler>( );
         //初始化多语言
-        HandlerManager.Do<InitLanguageHandler>( );
+        //HandlerManager.Do<InitLanguageHandler>( );
         //初始化SDK
         HandlerManager.Do<InitSDKHandler>( );
-        //初始化游戏
-        HandlerManager.Do<InitGameHandler>( );
+
+
+        Timer.Loop( 1f, TestTimer );
+    }
+
+    private void TestTimer( )
+    {
     }
 
 }

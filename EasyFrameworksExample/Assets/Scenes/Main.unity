@@ -338,6 +338,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5e499cef02dac439bc65d379cfcb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AOTDlls:
+  - Assets/AssetBundle/HotUpdateDlls/mscorlib.dll.bytes
+  - Assets/AssetBundle/HotUpdateDlls/System.dll.bytes
+  - Assets/AssetBundle/HotUpdateDlls/System.Core.dll.bytes
+  - Assets/AssetBundle/HotUpdateDlls/HotUpdate.dll.bytes
 --- !u!4 &2094293917
 Transform:
   m_ObjectHideFlags: 0

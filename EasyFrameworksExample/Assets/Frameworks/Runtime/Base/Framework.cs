@@ -40,7 +40,7 @@ public class Framework : MonoBehaviour
     [Header( "Canvas预设" )]
     public Canvas CanvasPrefab = null;
 
-    [Header("帧率限制")]
+    [Header( "帧率限制" )]
     public int TargetFrameRate = 60;
 
     /// <summary>
@@ -277,5 +277,13 @@ public class Framework : MonoBehaviour
     {
         CatAssetManager.Update( );//资源管理器更新
     }
+
+
+    /// <summary>
+    /// 开启协程
+    /// </summary>
+    /// <param name="Coroutine"></param>
+    /// <returns></returns>
+    public Coroutine StartContr( IEnumerator Coroutine ) => StartCoroutine( Coroutine );
 
 }

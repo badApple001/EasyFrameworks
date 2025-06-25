@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce91b17c92145649aa4ffff367f9ade, type: 3}
   m_Name: BundleBuildConfigSO
   m_EditorClassIdentifier: 
-  ManifestVersion: 8
+  ManifestVersion: 10
   TargetPlatforms: 0d000000
   Options: 9
   GlobalCompress: 2
@@ -43,6 +43,14 @@ MonoBehaviour:
     Filter: 
     Regex: 
     Group: Fonts
+    CompressOption: 0
+    EncryptOption: 0
+  - directoryName: Assets/AssetBundle/HotUpdateDlls
+    DirectoryObj: {fileID: 102900000, guid: b50899c606610dd40aaaeb06afb2232a, type: 3}
+    BuildRuleName: NAssetToOneBundle
+    Filter: 
+    Regex: 
+    Group: HotUpdateDlls
     CompressOption: 0
     EncryptOption: 0
   - directoryName: Assets/AssetBundle/UI
@@ -180,6 +188,23 @@ MonoBehaviour:
     - Name: Assets/TextMesh Pro/Shaders/TMP_SDF.shader
       Length: 10917
   - DirectoryName: AssetBundle
+    BundleName: HotUpdateDlls.bundle
+    BundleIdentifyName: AssetBundle/HotUpdateDlls.bundle
+    Group: HotUpdateDlls
+    IsRaw: 0
+    AssetsLength: 1973248
+    CompressOption: 2
+    EncryptOption: 2
+    Assets:
+    - Name: Assets/AssetBundle/HotUpdateDlls/HotUpdate.bytes
+      Length: 4608
+    - Name: Assets/AssetBundle/HotUpdateDlls/mscorlib.dll.bytes
+      Length: 1754624
+    - Name: Assets/AssetBundle/HotUpdateDlls/System.Core.dll.bytes
+      Length: 28160
+    - Name: Assets/AssetBundle/HotUpdateDlls/System.dll.bytes
+      Length: 185856
+  - DirectoryName: AssetBundle
     BundleName: UI.bundle
     BundleIdentifyName: AssetBundle/UI.bundle
     Group: UI
@@ -258,7 +283,7 @@ MonoBehaviour:
     - Name: Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset
         Icon.psd
       Length: 103962
-  BundleCount: 5
-  AssetCount: 78
+  BundleCount: 6
+  AssetCount: 82
   IsExactTextureSize: 0
   IsDrawDesc: 1
